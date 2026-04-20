@@ -1,0 +1,11 @@
+/* TEAM */
+Creator: Demode
+Location: Internet
+
+/* PROJECT */
+Type: Harm-reduction web app
+Stack: Vanilla HTML/CSS/JS
+
+/* THANKS */
+Community research contributors
+Hyphae Cup data
