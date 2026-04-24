@@ -1,20 +1,24 @@
 {
   "name": "Shroomulator",
   "short_name": "Shroomulator",
-  "start_url": "/xD/?source=pwa",
+  "description": "Harm reduction psilocybin calculator. Shaped by real-world dosing data.",
   "display": "standalone",
-  "background_color": "#2a1f35",
+  "start_url": "/xD/?source=pwa",
+  "scope": "/xD/",
+  "background_color": "#050408",
   "theme_color": "#2a1f35",
   "icons": [
     {
       "src": "/xD/assets/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/xD/assets/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
