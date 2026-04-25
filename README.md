@@ -62,7 +62,7 @@ Individual responses to psilocybin vary significantly. Always exercise caution, 
 
 ## 📄 License
 
-MIT 
+MIT License — see the [LICENSE](https://github.com/Shroomulator/xD/blob/main/LICENSE) file for details.
 
 ---
 
