@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <base href="/xD/">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- ── Primary SEO ── -->
   <title>Shroomulator — Harm Reduction Psilocybin Calculator</title>
@@ -80,8 +80,8 @@
 :root {
   --bg:           #050408;
   --surface:      #191920;
-  --surface-hi:   #1f1f28;
-  --border:       rgba(255,255,255,0.08);
+  --surface-hi:   #1e1e23;
+  --border:       rgba(255,255,255,0.13);
   --border-focus: #9b59b6;
   --text-1:       #f0f0f8;
   --text-2:       #b0a8c0;
@@ -100,7 +100,7 @@
 .scroll-top:hover{background:rgba(155,89,182,1)}
 
 /* ── Base ─────────────────────────────────────────── */
-html{overflow-x:clip}
+html{overflow-x:clip;font-size:106%}
 body{background:var(--bg);color:var(--text-1);font-family:Arial,sans-serif;margin:0;padding:6px 16px 10px;box-sizing:border-box}
 
 /* ── Site Header — DO NOT TOUCH ──────────────────── */
@@ -115,8 +115,8 @@ body{background:var(--bg);color:var(--text-1);font-family:Arial,sans-serif;margi
 .row-right{flex:1;min-width:0;display:flex;align-items:center}
 
 /* ── Number input ─────────────────────────────────── */
-input[type="number"]::placeholder{color:var(--text-m);font-size:0.72em;font-weight:600;letter-spacing:0.04em;opacity:1}
-input[type="number"]{height:42px;padding:0 10px;background:var(--surface);color:rgba(220,215,240,0.72);-webkit-text-fill-color:rgba(220,215,240,0.72);font-size:20px;font-weight:600;border:1px solid var(--border);border-radius:8px 0 0 8px;border-right:none;transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease);flex:1;min-width:0;touch-action:manipulation;-webkit-appearance:none}
+input[type="number"]::placeholder{color:var(--orange);font-size:13px;font-weight:600;letter-spacing:0.04em;opacity:1}
+input[type="number"]{height:42px;padding:0 10px;background:var(--surface);color:var(--orange);-webkit-text-fill-color:var(--orange);font-size:20px;font-weight:600;border:1px solid var(--border);border-radius:8px 0 0 8px;border-right:none;transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease);flex:1;min-width:0;touch-action:manipulation;-webkit-appearance:none}
 input[type="number"]:focus{border-color:var(--border-focus);box-shadow:0 0 0 3px rgba(155,89,182,0.15);outline:none}
 input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;appearance:none;margin:0}
 input[type="number"]{-moz-appearance:textfield}
@@ -146,7 +146,7 @@ input[type="number"]{-moz-appearance:textfield}
 .strain-display.has-value{font-size:13px}
 .strain-display-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
 .strain-display:focus-visible{outline:2px solid var(--purple);outline-offset:2px}
-#trip-display{width:100%;height:42px;padding:0 12px;background:var(--surface);color:var(--text-m);border:1px solid var(--border);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:600;box-sizing:border-box;transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease),background var(--dur) var(--ease);user-select:none;touch-action:manipulation}
+#trip-display{width:100%;height:42px;padding:0 12px;background:var(--surface);color:var(--purple);border:1px solid var(--border);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:600;box-sizing:border-box;transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease),background var(--dur) var(--ease);user-select:none;touch-action:manipulation}
 #trip-display::after{content:""}
 #trip-display:hover{border-color:rgba(155,89,182,0.5);background:var(--surface-hi);box-shadow:0 0 0 3px rgba(155,89,182,0.10)}
 
@@ -156,13 +156,14 @@ input[type="number"]{-moz-appearance:textfield}
 
 /* ── Modals ───────────────────────────────────────── */
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.82);justify-content:center;align-items:center;z-index:1000;overscroll-behavior:contain}
-.modal-content{background:var(--surface);padding:0;border-radius:18px;width:auto;min-width:min(300px,88vw);max-width:min(520px,92vw);text-align:center;color:var(--text-1);box-sizing:border-box;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.8),0 0 0 1px rgba(155,89,182,0.12);animation:modalIn 200ms var(--ease) both}
+.modal-content{background:var(--surface);padding:0;border-radius:18px;width:auto;min-width:min(300px,88vw);max-width:min(520px,92vw);text-align:center;color:var(--text-1);box-sizing:border-box;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.8),0 0 0 1px rgba(255,255,255,0.09);animation:modalIn 200ms var(--ease) both}
+#trip-info-modal .modal-content{overflow-y:auto;max-height:92vh}
 .modal-header{width:100%;padding:8px 10px 0;text-align:center;box-sizing:border-box}
 .modal-header-badge{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:9px 14px;background:#14141b;border:1px solid var(--border);border-radius:10px;box-sizing:border-box}
 .modal-title,.trip-modal-title{color:var(--text-1);font-size:1rem;font-weight:600;letter-spacing:0.04em;margin:0;text-align:center;text-decoration:none}
 .modal-title-icon{opacity:0.6;flex-shrink:0}
 .modal-close{display:none}
-.modal-body{padding:16px 18px 16px;overflow-y:auto;max-height:calc(90vh - 120px)}
+.modal-body{padding:16px 18px 16px;overflow-y:auto;max-height:calc(92vh - 80px)}
 .modal-body::-webkit-scrollbar{width:4px}
 .modal-body::-webkit-scrollbar-track{background:transparent}
 .modal-body::-webkit-scrollbar-thumb{background:var(--purple);border-radius:2px}
@@ -192,7 +193,7 @@ input[type="number"]{-moz-appearance:textfield}
 .strain-list-item.selected{color:var(--purple-l);font-weight:600}
 
 /* ── Result box ───────────────────────────────────── */
-#result{width:100%;padding:0;background:var(--surface);border:1px solid rgba(155,89,182,0.2);border-radius:10px;box-sizing:border-box;animation:fadeIn 0.35s}
+#result{width:100%;padding:0;background:var(--surface);border:1px solid rgba(255,255,255,0.13);border-radius:10px;box-sizing:border-box;animation:fadeIn 0.35s}
 #result.result--empty{padding:10px 16px;text-align:center;color:var(--text-m);font-size:0.875rem}
 #result-empty{display:flex;align-items:center;justify-content:center;padding:8px 16px;text-align:center;color:var(--text-m);font-size:0.875rem;line-height:1.4;min-height:0}
 .picker-no-results{color:var(--text-m);text-align:center;padding:20px 0;font-size:0.875rem}
@@ -263,8 +264,9 @@ input[type="number"]{-moz-appearance:textfield}
 #countdown-text{font-size:0.875rem;color:var(--text-m);margin:0 0 8px;min-height:1.3em}
 
 /* ── Responsive ───────────────────────────────────── */
-@media(max-width:480px){body{padding:8px 6px 14px}.input-group>label{width:28px;min-width:28px;flex-shrink:0;padding:0}.icon-slot{width:28px;min-width:28px;flex-shrink:0;padding-left:2px;justify-content:flex-start}#strain-info-text{padding:14px 36px 0}.trip-card{padding:5px 8px;margin-bottom:3px}.trip-card-header{margin-bottom:0}.trip-desc{font-size:0.75rem;line-height:1.25}.modal-body{max-height:calc(95vh - 90px)}}
-@media(max-height:640px){.trip-card{padding:4px 8px;margin-bottom:2px}.trip-desc{display:none}.modal-body{max-height:calc(100vh - 80px)}}
+@media(max-width:480px){body{padding:8px 6px 14px}.input-group>label{width:28px;min-width:28px;flex-shrink:0;padding:0}.icon-slot{width:28px;min-width:28px;flex-shrink:0;padding-left:2px;justify-content:flex-start}#strain-info-text{padding:14px 36px 0}.trip-card{padding:5px 8px;margin-bottom:3px}.trip-card-header{margin-bottom:0}.trip-desc{font-size:0.75rem;line-height:1.25}.modal-body{max-height:calc(96vh - 60px)}}
+@media(max-height:640px){.trip-card{padding:4px 8px;margin-bottom:2px}.modal-body{max-height:calc(100vh - 80px)}}
+@media(min-width:640px) and (pointer:fine){body{zoom:1.32}}
 @media(min-width:481px) and (max-width:600px){.container{padding:22px 20px}}
 @media screen and (-webkit-min-device-pixel-ratio:0){select,textarea,input{font-size:max(16px,1em)}}
 
@@ -325,9 +327,9 @@ input[type="number"]{-moz-appearance:textfield}
 .disc-main{font-size:0.9rem;line-height:1.65;color:var(--text-1);margin:0 0 10px}
 .disc-main:last-child{margin-bottom:0}
 .disc-main--notice{margin-bottom:0}
-.disc-accent{color:var(--purple-l);font-weight:700;font-style:normal}
+.disc-accent{color:var(--purple);font-weight:700;font-style:normal}
 .disc-divider{border:none;border-top:1px solid var(--border);margin:14px 0}
-.disc-label{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-m);margin:0 0 8px}
+.disc-label{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--purple-l);margin:0 0 8px}
 .disc-secondary{font-size:0.875rem;line-height:1.65;color:var(--text-2);margin:0}
 .disc-safetylink{text-align:center;margin:0}
 .disc-link{color:var(--purple);text-decoration:underline;text-underline-offset:2px;text-decoration-color:rgba(155,89,182,0.35);cursor:pointer;transition:color var(--dur) var(--ease)}
@@ -349,8 +351,8 @@ input[type="number"]{-moz-appearance:textfield}
 .saved-note-btn{background:none;border:none;color:#3a3a44;font-size:0.95em;line-height:1;cursor:pointer;padding:14px 12px 14px 6px;flex-shrink:0;transition:color var(--dur) var(--ease);-webkit-tap-highlight-color:transparent;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 .saved-note-btn:hover,.saved-note-btn:focus-visible{color:var(--purple-l)}
 .saved-note-btn.has-note{color:var(--purple-l)}
-.note-modal-overlay{position:fixed;inset:0;z-index:1200;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.65);padding:16px;box-sizing:border-box}
-.note-modal-box{background:var(--surface);border:1px solid rgba(155,89,182,0.2);border-radius:14px;padding:16px;width:min(340px,90vw);max-height:80vh;box-shadow:0 16px 48px rgba(0,0,0,0.7);display:flex;flex-direction:column;gap:10px}
+#note-modal{z-index:1100}
+.note-modal-box{background:var(--surface);border:1px solid rgba(255,255,255,0.13);border-radius:14px;padding:16px;width:min(340px,90vw);max-height:80vh;box-shadow:0 16px 48px rgba(0,0,0,0.7);display:flex;flex-direction:column;gap:10px}
 .note-modal-label{font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-m)}
 .note-modal-textarea{width:100%;box-sizing:border-box;background:rgba(255,255,255,0.05);border:1px solid rgba(155,89,182,0.25);border-radius:8px;color:var(--text-1);font-size:0.9rem;font-family:inherit;line-height:1.5;padding:10px 12px;resize:none;outline:none;transition:border-color var(--dur) var(--ease);min-height:80px;max-height:160px;-webkit-text-size-adjust:100%}
 .note-modal-textarea:focus{border-color:rgba(155,89,182,0.6)}
@@ -410,16 +412,16 @@ body{padding-bottom:36px}
 .vr-save-btn:hover{background:rgba(155,89,182,0.15);border-color:rgba(155,89,182,0.55);box-shadow:0 0 0 3px rgba(155,89,182,0.1)}
 /* ── Dose map ── */
 .vr-map-container{background:rgba(255,255,255,0.025);border:1px solid var(--border);border-radius:8px;padding:12px 12px 10px;margin:12px 0 0}
-.vr-map-overlay{position:relative;height:10px;overflow:visible;margin:3px 9px 0}
-.vr-map-dot-s{position:absolute;top:50%;width:8px;height:8px;border-radius:50%;transform:translate(-50%,-50%);background:rgba(255,255,255,0.28);border:1.5px solid rgba(255,255,255,0.45);pointer-events:none;z-index:1}
 .vr-map-bar{display:flex;border-radius:4px;overflow:hidden;border:1px solid var(--border);margin:4px 9px 0}
-.vr-map-seg{flex:1;padding:11px 2px;text-align:center;font-size:0.68rem;font-weight:600;color:var(--text-2);transition:background 150ms var(--ease),color 150ms var(--ease),box-shadow 150ms var(--ease);border-right:1px solid rgba(255,255,255,0.07);white-space:nowrap;overflow:hidden;line-height:1.2;letter-spacing:0.02em;user-select:none;text-transform:uppercase}
+.vr-map-seg{flex:1;padding:14px 2px;text-align:center;font-size:0.67rem;font-weight:600;color:var(--text-2);transition:background 150ms var(--ease),color 150ms var(--ease),box-shadow 150ms var(--ease);border-right:1px solid rgba(255,255,255,0.07);white-space:nowrap;overflow:hidden;line-height:1.2;letter-spacing:0.02em;user-select:none;text-transform:uppercase}
 .vr-map-seg:last-child{border-right:none}
 .vr-map-seg.active{background:rgba(155,89,182,0.28);color:var(--text-1);box-shadow:inset 0 0 0 1px rgba(155,89,182,0.35)}
 .vr-disc{font-size:0.75rem;color:var(--text-m);text-align:center;line-height:1.5;margin:6px 0 0}
 .vr-warns{display:flex;flex-direction:column;gap:6px;margin-top:12px;padding-top:8px;border-top:1px solid var(--border)}
 .vr-warn-info{color:var(--text-m);font-size:0.75rem;margin:0;line-height:1.5;text-align:center}
 .vr-warn-yellow{color:var(--orange-l);font-size:0.8rem;margin:0;line-height:1.5;text-align:center}
+#variance-modal .modal-content{width:min(460px,92vw)}
+#vr-warnings{min-height:76px}
 .vr-link{color:var(--purple-l);text-decoration:underline;text-underline-offset:2px;cursor:pointer}
 .vr-link-yellow{color:var(--orange-l);text-decoration:underline;cursor:pointer}
 
@@ -625,7 +627,7 @@ body[style*="overflow: hidden"]>footer{visibility:hidden}
       <label for="strain-display">Strain</label>
       <div class="row-right">
         <div class="strain-display" id="strain-display" role="button" tabindex="0" aria-label="Select mushroom strain" style="position:relative">
-          <span class="strain-display-text" id="strain-display-text" style="padding-right:32px">Strain</span>
+          <span class="strain-display-text hallucinate" id="strain-display-text" style="padding-right:32px">Strain</span>
           <button class="info-btn" id="strain-info-btn" onclick="event.stopPropagation();openStrainInfoBtn()" style="display:none;position:absolute;right:8px;top:50%;transform:translateY(-50%)" aria-label="Strain info">i</button>
         </div>
       </div>
@@ -654,7 +656,8 @@ body[style*="overflow: hidden"]>footer{visibility:hidden}
 
         <!-- Row 1: segmented toggles -->
         <div class="adv-item adv-item--seg lemon-off" id="adv-lemon" role="group" aria-label="Lemon Tek">
-          <span class="adv-seg-title"><span id="adv-lemon-icon">🍋</span> Lemon Tek<button class="adv-lemon-help" onclick="event.stopPropagation();openFaqFromStrain(event,'preparation-methods')" aria-label="About lemon tek" tabindex="0">?</button></span>
+          <span class="adv-item-icon" id="adv-lemon-icon">🍋</span>
+          <span class="adv-item-label">Lemon<button class="adv-lemon-help" onclick="event.stopPropagation();openFaqFromStrain(event,'preparation-methods')" aria-label="About lemon tek" tabindex="0">?</button></span>
           <div class="adv-seg-pill">
             <button class="adv-seg-opt" onclick="advSetLemon(false)" aria-label="Off">Off</button>
             <button class="adv-seg-opt" onclick="advSetLemon(true)" aria-label="On">On</button>
@@ -663,7 +666,8 @@ body[style*="overflow: hidden"]>footer{visibility:hidden}
         </div>
 
         <div class="adv-item adv-item--seg" id="adv-form" role="group" aria-label="Form">
-          <span class="adv-seg-title"><span id="adv-form-icon">🌵</span> Form</span>
+          <span class="adv-item-icon" id="adv-form-icon">🌵</span>
+          <span class="adv-item-label">Form</span>
           <span id="adv-form-label" style="display:none">Dry</span>
           <div class="adv-seg-pill">
             <button class="adv-seg-opt" onclick="advSetForm('dry')" aria-label="Dry">Dry</button>
@@ -672,7 +676,8 @@ body[style*="overflow: hidden"]>footer{visibility:hidden}
         </div>
 
         <div class="adv-item adv-item--seg" id="adv-unit" role="group" aria-label="Unit">
-          <span class="adv-seg-title">⚖️ Unit</span>
+          <span class="adv-item-icon">⚖️</span>
+          <span class="adv-item-label">Unit</span>
           <span id="adv-unit-label" style="display:none">g</span>
           <div class="adv-seg-pill">
             <button class="adv-seg-opt" onclick="advSetUnit('g')" aria-label="grams">g</button>
@@ -713,29 +718,30 @@ body[style*="overflow: hidden"]>footer{visibility:hidden}
     </div>
     <style>
       #advanced-panel{max-height:0;overflow:hidden;transition:max-height 200ms cubic-bezier(0.4,0,0.2,1),opacity 200ms cubic-bezier(0.4,0,0.2,1);opacity:0}
-      #advanced-panel.adv-open{max-height:340px;opacity:1}
+      #advanced-panel.adv-open{max-height:300px;opacity:1}
       #advanced-toggle.adv-open{color:#9b59b6}
       #advanced-toggle.adv-open span{display:inline-block;transform:rotate(180deg)}
-      .adv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:6px 0 6px}
-      .adv-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:8px 4px;text-align:center;cursor:pointer;transition:background 200ms cubic-bezier(0.4,0,0.2,1),border-color 200ms cubic-bezier(0.4,0,0.2,1),box-shadow 200ms cubic-bezier(0.4,0,0.2,1);-webkit-tap-highlight-color:transparent;min-height:52px}
+      .adv-grid{display:grid;grid-template-columns:repeat(3,75px);gap:5px;padding:6px 0;justify-content:center}
+      .adv-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:0;text-align:center;cursor:pointer;transition:background 200ms cubic-bezier(0.4,0,0.2,1),border-color 200ms cubic-bezier(0.4,0,0.2,1),box-shadow 200ms cubic-bezier(0.4,0,0.2,1);-webkit-tap-highlight-color:transparent;width:75px;height:75px;box-sizing:border-box;overflow:hidden}
       .adv-item--action:hover,.adv-item:hover{background:rgba(155,89,182,0.08);border-color:rgba(155,89,182,0.3);box-shadow:0 0 0 3px rgba(155,89,182,0.08)}
       .adv-item:active{background:rgba(155,89,182,0.18)}
       .adv-item--empty{cursor:default;background:transparent;border-color:transparent}
-      .adv-item--empty:hover{background:transparent;border-color:transparent}
+      .adv-item--empty:hover{background:transparent;border-color:transparent;box-shadow:none}
       .adv-item.active{background:rgba(155,89,182,0.12);border:1px solid rgba(155,89,182,0.4)}
-      .adv-item-icon{font-size:1.1em;line-height:1;transition:filter 200ms cubic-bezier(0.4,0,0.2,1)}
-      .adv-item-label{color:#aaa;font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;line-height:1.2}
+      .adv-item-icon{font-size:1.05em;line-height:1;transition:filter 200ms cubic-bezier(0.4,0,0.2,1);flex-shrink:0}
+      .adv-item-label{color:#aaa;font-size:0.58rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;line-height:1.1;white-space:nowrap}
       .adv-item.active .adv-item-label{color:#c39ad8}
       .adv-item.lemon-off .adv-item-icon{filter:grayscale(1);opacity:0.5}
       .adv-checkbox{display:none}
-      .adv-item--seg{flex-direction:column;align-items:stretch;gap:4px;padding:6px;cursor:default}
-      .adv-item--seg:hover{background:rgba(255,255,255,0.03);border-color:rgba(255,255,255,0.07)}
-      .adv-seg-title{display:flex;align-items:center;gap:5px;font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#999;line-height:1;padding:0 2px}
-      .adv-seg-pill{display:flex;border-radius:6px;background:rgba(0,0,0,0.35);overflow:hidden;width:100%}
-      .adv-seg-opt{flex:1;background:transparent;border:none;color:rgba(255,255,255,0.28);font-size:0.65rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;padding:5px 2px;cursor:pointer;transition:background 200ms cubic-bezier(0.4,0,0.2,1),color 200ms cubic-bezier(0.4,0,0.2,1);-webkit-tap-highlight-color:transparent;line-height:1;text-align:center}
-      .adv-seg-opt:hover{color:rgba(255,255,255,0.5);background:rgba(155,89,182,0.12)}
-      .adv-item--seg:not(.active) .adv-seg-opt:first-child{background:rgba(155,89,182,0.22);color:#c39ad8}
-      .adv-item--seg.active .adv-seg-opt:last-child{background:rgba(155,89,182,0.32);color:#e0b8ff}
+      .adv-item--seg{cursor:default;gap:3px}
+      .adv-item--seg:hover{background:rgba(255,255,255,0.03);border-color:rgba(255,255,255,0.07);box-shadow:none}
+      .adv-seg-title{display:none}
+      .adv-seg-pill{display:flex;border-radius:4px;background:rgba(0,0,0,0.4);overflow:hidden;width:78%;height:14px;flex-shrink:0}
+      .adv-seg-opt{flex:1;background:transparent;border:none;color:rgba(255,255,255,0.3);font-size:0.5rem;font-weight:800;letter-spacing:0.02em;text-transform:uppercase;padding:0;cursor:pointer;transition:background 150ms,color 150ms;-webkit-tap-highlight-color:transparent;line-height:14px;text-align:center}
+      .adv-seg-opt:hover{color:rgba(255,255,255,0.5);background:rgba(155,89,182,0.15)}
+      .adv-item--seg:not(.active) .adv-seg-opt:first-child{background:rgba(155,89,182,0.28);color:#d4a8f0}
+      .adv-item--seg.active .adv-seg-opt:last-child{background:rgba(155,89,182,0.38);color:#e8c8ff}
+      .adv-lemon-help{display:none}
     </style>
   </div>
 
@@ -946,8 +952,7 @@ People microdose for different reasons — focus and creative work, mood stabili
         <details class="faq-cat" id="cat-sources">
           <summary><span>📚</span><span>Sources &amp; Methodology</span></summary>
           <div class="faq-cat-body">
-          <details class="faq-item" id="faq-sources-methodology"><summary>Sources &amp; Methodology</summary>
-          <div class="faq-answer">This tool combines laboratory analysis, published research, and community-validated data to produce conservative, harm-reduction-oriented estimates.<br><br>
+          <div class="faq-answer" id="faq-sources-methodology" style="padding:10px 14px 12px">This tool combines laboratory analysis, published research, and community-validated data to produce conservative, harm-reduction-oriented estimates.<br><br>
           <strong>Laboratory assay data</strong><br>
           <a href="https://www.sciencedirect.com/science/article/pii/S000326702301382X" target="_blank">Determination of psilocybin and psilocin content in Psilocybe cubensis (2024, LC-MS/MS)</a><br>
           <a href="https://pubmed.ncbi.nlm.nih.gov/16423222/" target="_blank">Determination of psilocin and psilocybin in mushrooms by HPLC with chemiluminescence detection</a><br>
@@ -970,7 +975,6 @@ People microdose for different reasons — focus and creative work, mood stabili
           <a href="https://tripsafe.org" target="_blank">TripSafe — psychedelic dosage converter</a><br>
           <a href="https://psychonautwiki.org" target="_blank">PsychonautWiki — cross-substance comparisons</a><br><br>
           These sources reflect a combination of laboratory measurement, published research, and large-scale community reporting. Individual response and potency may vary significantly.</div>
-        </details>
           </div>
         </details>
       </div>
@@ -1123,7 +1127,7 @@ People microdose for different reasons — focus and creative work, mood stabili
           <p class="disc-secondary">Psilocybin's effects are shaped by factors no formula can access — your gut chemistry, receptor sensitivity, tolerance history, what you ate, your headspace going in, and the specific batch you have.</p>
         </div>
         <div class="disc-divider"></div>
-        <p class="disc-safetylink"><a onclick="closeAllModals();var c=document.getElementById('cat-safety');if(c){document.querySelector('.seo-section').setAttribute('open','');c.setAttribute('open','');setTimeout(function(){c.scrollIntoView({behavior:'smooth',block:'start'})},80)}" class="disc-link disc-link--orange">View harm-reduction &amp; safety guide →</a></p>
+        <p class="disc-safetylink"><a onclick="closeAllModals();var c=document.getElementById('cat-safety');if(c){document.querySelector('.seo-section').setAttribute('open','');c.setAttribute('open','');setTimeout(function(){c.scrollIntoView({behavior:'smooth',block:'start'})},80)}" class="disc-link">View harm-reduction &amp; safety guide →</a></p>
       </div>
       <div style="text-align:center;padding:12px 16px 16px;border-top:1px solid rgba(255,255,255,0.08)">
         <p id="countdown-text" style="font-size:0.875rem;color:#666;margin:0 0 10px;min-height:1.2em"></p>
@@ -1177,7 +1181,7 @@ return "<div class=\"strain-badges\"><span class=\"badge "+potClass+"\">\u26a1 "
 function renderStrainInfo(s){
 var _sbn=document.getElementById("strain-modal-badge-name");if(_sbn){_sbn.innerHTML='<span class="hallucinate">'+s.name+'</span>';}document.getElementById("strain-info-text").innerHTML=_buildStrainBadgesHTML(s)+'<p class="strain-modal-origin">📍 <span>'+s.origin+'</span></p><hr class="strain-modal-divider"><p class="strain-modal-desc">'+s.desc+'</p>';
 }
-function _updateStrainModalButtons(){var e=document.getElementById("strain-info-back"),i=document.getElementById("strain-info-done");"icon"===strainInfoSource?(e.innerHTML="✕",i.style.display="none"):(e.innerHTML="✕",i.style.display="")}function strainInfoBack(){closeModal("strain-modal")}function strainInfoDone(){"picker"===strainInfoSource&&pendingStrain&&(STATE.strain=pendingStrain,STATE.interacted=true,updateStrainDisplay(),update(),closeModal("strain-picker-modal")),closeModal("strain-modal"),pendingStrain=null}function _updateNavBtns(){const e=document.getElementById("strain-nav-prev"),i=document.getElementById("strain-nav-next");if(!e)return;const n=strainNavList.length>1;e.style.display=i.style.display=n?"flex":"none",e.style.opacity=strainNavIdx>0?"1":"0.25",i.style.opacity=strainNavIdx<strainNavList.length-1?"1":"0.25"}function navigateStrain(e){const i=strainNavIdx+e;if(i<0||i>=strainNavList.length)return;strainNavIdx=i;const n=strainNavList[i];"picker"===strainInfoSource&&(pendingStrain=n),renderStrainInfo(n),_updateNavBtns();try{pushStrainUrl(n);}catch(x){}}function openStrainInfoBtn(){if(!STATE.strain)return;openStrainInfoFromPicker(STATE.strain.name);}function updateStrainDisplay(){const e=document.getElementById("strain-display"),i=document.getElementById("strain-display-text"),b=document.getElementById("strain-info-btn");STATE.strain?(i.textContent=STATE.strain.name,e.classList.add("has-value"),i.classList.add("hallucinate"),b&&(b.style.display="inline-flex")):(i.textContent="Strain",e.classList.remove("has-value"),i.classList.remove("hallucinate"),b&&(b.style.display="none"))}if(window.matchMedia("(pointer: coarse)").matches){document.getElementById("strain-info-text").addEventListener("click",function(e){var b=e.target.closest(".badge");if(!b)return;e.stopPropagation();var open=b.classList.contains("tip-open");document.querySelectorAll("#strain-info-text .badge.tip-open").forEach(function(x){x.classList.remove("tip-open")});if(!open)b.classList.add("tip-open")})}document.addEventListener("keydown",function(e){if("Escape"!==e.key){var _t=document.activeElement,_tag=_t?_t.tagName:"";if(_tag==="INPUT"||_tag==="TEXTAREA")return;"flex"===document.getElementById("strain-modal").style.display&&("ArrowLeft"===e.key&&(e.preventDefault(),navigateStrain(-1)),"ArrowRight"===e.key&&(e.preventDefault(),navigateStrain(1)))}else{var i=document.getElementById("disclaimer-popup"),n=document.getElementById("close-disclaimer");if(i&&"flex"===i.style.display&&n&&"none"===n.style.display)return;closeAllModals()}}),document.addEventListener("click",function(e){e.target.closest&&e.target.closest(".badge")||document.querySelectorAll(".badge.tip-open").forEach(e=>e.classList.remove("tip-open"))}),function(){var e=0,i=document.getElementById("strain-modal");i.addEventListener("touchstart",function(i){e=i.changedTouches[0].clientX},{passive:!0}),i.addEventListener("touchend",function(i){var n=i.changedTouches[0].clientX-e;Math.abs(n)>40&&navigateStrain(n<0?1:-1)},{passive:!0})}();const tripNames={1:"Microdose",2:"Low",3:"Medium",4:"Normal",5:"High",6:"Heroic"};function showTripInfo(){const e=document.getElementById("trip-info-text");e.innerHTML="",[{v:"1",name:"Microdose",bar:"▁",desc:"Strictly sub-perceptual — you should not feel high. Subtle shift in mood, focus, or creativity. No visuals. <a onclick=\"event.stopPropagation();openFaqFromStrain(event,&apos;microdosing&apos;)\" style=\"color:#9b59b6;text-decoration:underline;cursor:pointer\">Microdose protocols ›</a>"},{v:"2",name:"Low",bar:"▃",desc:"You'll feel it. Mild visuals, colour and sound enhancement, light euphoria. Still manageable — good for a first experience or a gentle revisit. Fasting beforehand makes a real difference."},{v:"3",name:"Medium",bar:"▄",desc:"Clear psychedelic effects with visuals, body sensation, and mental shift. Stronger than light doses but still generally manageable."},{v:"4",name:"Normal",bar:"▅",desc:"A full psychedelic experience. Visuals, time distortion, deep introspection. Clear your schedule — you'll need 5–6 hours and a quiet morning after."},{v:"5",name:"High",bar:"▇",desc:"Intense. Ego softening, possible ego loss, profound or confronting insights. Not for beginners. Have a sober person present who knows what you're doing."},{v:"6",name:"Heroic",bar:"█",desc:"<a onclick=\"event.stopPropagation();openFaqFromStrain(event,&apos;ego-death&apos;)\" style=\"color:#9b59b6;text-decoration:underline;cursor:pointer;font-style:normal\">Ego dissolution</a> is likely. The boundary between you and everything else may disappear. Only attempt this with serious prior experience, a trusted sitter, and nothing to do for the rest of the day."}].forEach(({v:i,name:n,bar:t,desc:a})=>{const o=document.createElement("div");o.className="trip-card",o.innerHTML='<div class="trip-card-header"><span class="trip-bar">'+t+'</span><span class="trip-name">'+n+'</span></div>'+"<div class=\"trip-desc\">"+a+"</div>",o.addEventListener("click",()=>selectTripLevel(i)),e.appendChild(o)}),openModal("trip-info-modal")}function selectTripLevel(e){STATE.interacted=true,document.getElementById("trip-level").value=e,STATE.tripLevel=e;const i=document.getElementById("trip-display");i.textContent=tripNames[e]||"Trip Level",i.classList.toggle("has-value",!!e),i.style.color=e?"#9b59b6":"",i.style.webkitTextFillColor=e?"#9b59b6":"",savePrefs({tripLevel:e}),update(),setTimeout(()=>{closeModal("trip-info-modal");if(_tripReturnTarget){_tripReturnTarget=null;togglePmTip();}},180)}function resetAll(){
+function _updateStrainModalButtons(){var e=document.getElementById("strain-info-back"),i=document.getElementById("strain-info-done");"icon"===strainInfoSource?(e.innerHTML="✕",i.style.display="none"):(e.innerHTML="✕",i.style.display="")}function strainInfoBack(){closeModal("strain-modal")}function strainInfoDone(){"picker"===strainInfoSource&&pendingStrain&&(STATE.strain=pendingStrain,STATE.interacted=true,updateStrainDisplay(),update(),closeModal("strain-picker-modal")),closeModal("strain-modal"),pendingStrain=null}function _updateNavBtns(){const e=document.getElementById("strain-nav-prev"),i=document.getElementById("strain-nav-next");if(!e)return;const n=strainNavList.length>1;e.style.display=i.style.display=n?"flex":"none",e.style.opacity=strainNavIdx>0?"1":"0.25",i.style.opacity=strainNavIdx<strainNavList.length-1?"1":"0.25"}function navigateStrain(e){const i=strainNavIdx+e;if(i<0||i>=strainNavList.length)return;strainNavIdx=i;const n=strainNavList[i];"picker"===strainInfoSource&&(pendingStrain=n),renderStrainInfo(n),_updateNavBtns();try{pushStrainUrl(n);}catch(x){}}function openStrainInfoBtn(){if(!STATE.strain)return;openStrainInfoFromPicker(STATE.strain.name);}function updateStrainDisplay(){const e=document.getElementById("strain-display"),i=document.getElementById("strain-display-text"),b=document.getElementById("strain-info-btn");STATE.strain?(i.textContent=STATE.strain.name,e.classList.add("has-value"),i.classList.add("hallucinate"),b&&(b.style.display="inline-flex")):(i.textContent="Strain",e.classList.remove("has-value"),b&&(b.style.display="none"))}if(window.matchMedia("(pointer: coarse)").matches){document.getElementById("strain-info-text").addEventListener("click",function(e){var b=e.target.closest(".badge");if(!b)return;e.stopPropagation();var open=b.classList.contains("tip-open");document.querySelectorAll("#strain-info-text .badge.tip-open").forEach(function(x){x.classList.remove("tip-open")});if(!open)b.classList.add("tip-open")})}document.addEventListener("keydown",function(e){if("Escape"!==e.key){var _t=document.activeElement,_tag=_t?_t.tagName:"";if(_tag==="INPUT"||_tag==="TEXTAREA")return;"flex"===document.getElementById("strain-modal").style.display&&("ArrowLeft"===e.key&&(e.preventDefault(),navigateStrain(-1)),"ArrowRight"===e.key&&(e.preventDefault(),navigateStrain(1)))}else{var i=document.getElementById("disclaimer-popup"),n=document.getElementById("close-disclaimer");if(i&&"flex"===i.style.display&&n&&"none"===n.style.display)return;closeAllModals()}}),document.addEventListener("click",function(e){e.target.closest&&e.target.closest(".badge")||document.querySelectorAll(".badge.tip-open").forEach(e=>e.classList.remove("tip-open"))}),function(){var e=0,i=document.getElementById("strain-modal");i.addEventListener("touchstart",function(i){e=i.changedTouches[0].clientX},{passive:!0}),i.addEventListener("touchend",function(i){var n=i.changedTouches[0].clientX-e;Math.abs(n)>40&&navigateStrain(n<0?1:-1)},{passive:!0})}();const tripNames={1:"Microdose",2:"Low",3:"Medium",4:"Normal",5:"High",6:"Heroic"};function showTripInfo(){const e=document.getElementById("trip-info-text");e.innerHTML="",[{v:"1",name:"Microdose",bar:"▁",desc:"Strictly sub-perceptual — you should not feel high. Subtle shift in mood, focus, or creativity. No visuals. <a onclick=\"event.stopPropagation();openFaqFromStrain(event,&apos;microdosing&apos;)\" style=\"color:#9b59b6;text-decoration:underline;cursor:pointer\">Microdose protocols ›</a>"},{v:"2",name:"Low",bar:"▃",desc:"You'll feel it. Mild visuals, colour and sound enhancement, light euphoria. Still manageable — good for a first experience or a gentle revisit. Fasting beforehand makes a real difference."},{v:"3",name:"Medium",bar:"▄",desc:"Clear psychedelic effects with visuals, body sensation, and mental shift. Stronger than light doses but still generally manageable."},{v:"4",name:"Normal",bar:"▅",desc:"A full psychedelic experience. Visuals, time distortion, deep introspection. Clear your schedule — you'll need 5–6 hours and a quiet morning after."},{v:"5",name:"High",bar:"▇",desc:"Intense. Ego softening, possible ego loss, profound or confronting insights. Not for beginners. Have a sober person present who knows what you're doing."},{v:"6",name:"Heroic",bar:"█",desc:"<a onclick=\"event.stopPropagation();openFaqFromStrain(event,&apos;ego-death&apos;)\" style=\"color:#9b59b6;text-decoration:underline;cursor:pointer;font-style:normal\">Ego dissolution</a> is likely. The boundary between you and everything else may disappear. Only attempt this with serious prior experience, a trusted sitter, and nothing to do for the rest of the day."}].forEach(({v:i,name:n,bar:t,desc:a})=>{const o=document.createElement("div");o.className="trip-card",o.innerHTML='<div class="trip-card-header"><span class="trip-bar">'+t+'</span><span class="trip-name">'+n+'</span></div>'+"<div class=\"trip-desc\">"+a+"</div>",o.addEventListener("click",()=>selectTripLevel(i)),e.appendChild(o)}),openModal("trip-info-modal")}function selectTripLevel(e){STATE.interacted=true,document.getElementById("trip-level").value=e,STATE.tripLevel=e;const i=document.getElementById("trip-display");i.textContent=tripNames[e]||"Trip Level",i.classList.toggle("has-value",!!e),i.style.color=e?"#9b59b6":"",i.style.webkitTextFillColor=e?"#9b59b6":"",savePrefs({tripLevel:e}),update(),setTimeout(()=>{closeModal("trip-info-modal");if(_tripReturnTarget){_tripReturnTarget=null;togglePmTip();}},180)}function resetAll(){
   document.getElementById("weight").value="";
   savePrefs({weight:"",strain:null,tripLevel:null,lemonTek:false,unitMode:"g",form:"dry",unit:null});
   document.getElementById("trip-level").value="";
@@ -1314,8 +1318,20 @@ function copyShareLink(btn){try{var url=buildShareUrl();var _fb=function(){if(bt
 function saveCurrentResult(btn){
   if(!STATE.strain||!STATE.tripLevel||!_lastDose)return;
   var _sl=document.getElementById('vr-slider');
-  var _saveDose=_sl?_sliderToGrams(parseInt(_sl.value)):_lastDose;
-  var item={timestamp:Date.now(),weight:STATE.weight,unit:STATE.weightUnit,strain:STATE.strain.name,potency:STATE.strain.potency,tripLevel:STATE.tripLevel,dose:_saveDose,rangeLow:_lastRangeLow,rangeHigh:_lastRangeHigh,lemonTek:STATE.lemonTek,form:STATE.form};
+  var _saveDose=_lastDose;
+  var _numSpan=document.getElementById('vr-dose-num');
+  if(_numSpan){
+    var _dispVal=parseFloat(_numSpan.textContent);
+    if(!isNaN(_dispVal)&&_dispVal>0){
+      var _isMgM=STATE.unitMode==='mg';
+      var _isFreshM=STATE.form==='fresh';
+      var _grams=_dispVal;
+      if(_isMgM)_grams=_dispVal/1000;
+      if(_isFreshM)_grams=_grams/10;
+      if(_grams>0)_saveDose=_grams;
+    }
+  }
+  var item={timestamp:Date.now(),weight:STATE.weight,unit:STATE.weightUnit,strain:STATE.strain.name,potency:STATE.strain.potency,tripLevel:STATE.tripLevel,dose:_saveDose,rangeLow:_lastRangeLow,rangeHigh:_lastRangeHigh,lemonTek:STATE.lemonTek,form:STATE.form,unitMode:STATE.unitMode};
   var arr=[];try{arr=JSON.parse(localStorage.getItem(SAVED_KEY)||"[]");}catch(e){}
   arr.unshift(item);arr=arr.slice(0,99);
   try{localStorage.setItem(SAVED_KEY,JSON.stringify(arr));}catch(e){}
@@ -1327,28 +1343,32 @@ function _saveNote(ts,text){try{var n=_loadNotes();if(text.trim()){n[ts]=text.tr
 var _noteModalTs=null;
 function _openNoteModal(ts){
   _noteModalTs=ts;
-  var overlay=document.getElementById('note-modal-overlay');
+  var m=document.getElementById('note-modal');
   var ta=document.getElementById('note-modal-ta');
-  if(!overlay||!ta)return;
+  if(!m||!ta)return;
   var notes=_loadNotes();
   ta.value=notes[ts]||'';
-  overlay.style.display='flex';
+  _saveFocus();
+  m.style.display='flex';
   document.body.style.overflow='hidden';
-  setTimeout(function(){ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length);},60);
+  setTimeout(function(){
+    ta.focus();
+    ta.setSelectionRange(ta.value.length,ta.value.length);
+  },60);
 }
 function _closeNoteModal(save){
-  var overlay=document.getElementById('note-modal-overlay');
+  var m=document.getElementById('note-modal');
   var ta=document.getElementById('note-modal-ta');
-  if(!overlay)return;
+  if(!m)return;
   if(save&&_noteModalTs!==null&&ta){
     _saveNote(_noteModalTs,ta.value);
     var btn=document.getElementById('snb-'+_noteModalTs);
     if(btn){var hasNote=ta.value.trim().length>0;btn.classList.toggle('has-note',hasNote);btn.textContent=hasNote?'📝':'📋';}
   }
-  overlay.style.display='none';
+  m.style.display='none';
   _noteModalTs=null;
-  var anyModal=Array.from(document.querySelectorAll('.modal')).some(function(m){return m.style.display==='flex';});
-  if(!anyModal)document.body.style.overflow='';
+  _restoreFocus();
+  _updateBodyScroll();
 }
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape'&&_noteModalTs!==null){e.stopPropagation();_closeNoteModal(true);}
@@ -1368,7 +1388,8 @@ function _renderSavedList(){
     var hh=String(d.getHours()).padStart(2,'0');
     var min=String(d.getMinutes()).padStart(2,'0');
     var dateStr=dd+'/'+mm+' – '+hh+':'+min;
-    var doseStr=parseFloat(r.dose.toFixed(2))+'g';
+    var _um=r.unitMode||'g';
+    var doseStr=_um==='mg'?Math.round(r.dose*1000/10)*10+'mg':parseFloat(r.dose.toFixed(2))+'g';
     var ts=r.timestamp;
     var note=notes[ts]||'';
     var hasNote=note.length>0;
@@ -1457,16 +1478,16 @@ function calculate(){
   var _lvl=parseInt(i);
   if(r<=0){document.getElementById("result-content").style.display="none";return;}
   _lastDose=r;_lastRangeLow=_savedRangeLow;_lastRangeHigh=_savedRangeHigh;
-  if(STATE.lemonTek){_lastRangeLow*=0.88;_lastRangeHigh*=0.88;}
+  if(STATE.lemonTek){if(_lastRangeLow!==null)_lastRangeLow*=0.88;if(_lastRangeHigh!==null)_lastRangeHigh*=0.88;}
   var _highPot=s>=2;
   var _highLvl=_lvl>=5;
   var _isMicro=i==="1";
   var _ws=[];
   if(_highPot&&_highLvl){_ws.push('<span class="warn--danger">⚠ Very potent + high dose</span>');}
-  else{if(_highPot){_ws.push('<span class="warn--strong">⚠ Very potent strain</span>');}if(_highLvl){_ws.push('<span class="warn--strong">⚠ High dose</span>');}}
-  if(_isMicro||(_lastDose>0&&_lastDose<1.5)){_ws.push('<span class="result-warn-info">ℹ️ Use a 0.01g precision scale</span>');}
+  else{if(_highLvl){_ws.push('<span class="warn--strong">⚠ High dose</span>');}if(_highPot){_ws.push('<span class="warn--strong">⚠ Very potent strain</span>');}}
   var _isWLP=WLP_SPECIES.some(function(w){return(STATE.strain.name+STATE.strain.origin).toLowerCase().includes(w);});
   if(_isWLP){_ws.push('<span class="warn--strong">⚠ Wood lover\'s paralysis risk</span>');}
+  if(_isMicro||(_lastDose>0&&_lastDose<1.5)){_ws.push('<span class="result-warn-info">ℹ️ Use a 0.01g precision scale</span>');}
   var _allWarn=_ws.length?'<div class="result-warnings">'+_ws.join('')+'</div>':'';
   t.className="";
   t.style.animation="none";t.offsetHeight;t.style.animation="";
@@ -1518,8 +1539,10 @@ function _vrStartEdit(){
     if(isMgM)dryG=raw/1000;
     if(isFreshM)dryG=dryG/10;
     dryG=Math.max(0.001,Math.min(30,dryG));
-    // map dry grams → 0-100 slider position
-    var sliderPct=Math.round(_getDoseMapPct(dryG));
+    // map display grams → base grams → 0-100 slider position
+    var _cPot=(STATE.strain&&STATE.strain.potency)?STATE.strain.potency:1;
+    var _cLf=STATE.lemonTek?0.88:1;
+    var sliderPct=Math.round(_getDoseMapPct(dryG*_cPot/_cLf));
     sliderPct=Math.max(0,Math.min(100,sliderPct));
     var sl=document.getElementById('vr-slider');
     if(sl){sl.value=sliderPct;}
@@ -1531,8 +1554,8 @@ function _vrStartEdit(){
 function _getDoseMapPct(dryG){
   // Inverse of _sliderToGrams — pure base dry gram space, NO potency
   var g=dryG;
-  if(g<=0.05) return 0;
-  if(g<=0.10) return ((g-0.05)/(0.10-0.05))*10;
+  if(g<=0.01) return 0;
+  if(g<=0.10) return ((g-0.01)/(0.10-0.01))*10;
   if(g<=0.50) return 10+((g-0.10)/(0.50-0.10))*15;
   if(g<=1.00) return 25+((g-0.50)/(1.00-0.50))*20;
   if(g<=1.80) return 45+((g-1.00)/(1.80-1.00))*20;
@@ -1549,12 +1572,12 @@ function _vrUpdateRangeMarker(slVal){
   }
 }
 
-function openFaqFromStrain(e,faqId){e.preventDefault();closeAllModals();var allSections=document.querySelectorAll(".seo-section");allSections.forEach(function(s){s.setAttribute("open","")});var faqEl=document.getElementById("faq-"+faqId);if(faqEl){var cat=faqEl.closest(".faq-cat");if(cat)cat.setAttribute("open","");faqEl.setAttribute("open","");setTimeout(function(){faqEl.scrollIntoView({behavior:"smooth",block:"start"})},180);}}function _vrConvertM(v,isMgM,isFreshM){var out=v;if(isFreshM)out=out*10;if(isMgM){out=Math.round(out*1000/10)*10;}else{out=parseFloat(out.toFixed(2));}return out.toString();}function _doseToLevel(dryG){var pot=(STATE.strain&&STATE.strain.potency)?STATE.strain.potency:1;var lf=STATE.lemonTek?0.88:1;var eq=dryG*pot/lf;if(eq<0.1)return 1;if(eq<=0.50)return 2;if(eq<=1.00)return 3;if(eq<=1.80)return 4;if(eq<=3.50)return 5;return 6;}var _vrWlpLine=false;function _vrUpdateWarnings(tl,wlpLine,sliderDose){var el=document.getElementById("vr-warnings");if(!el)return;var dryG=sliderDose!==undefined?sliderDose:_lastDose;var pot=(STATE.strain&&STATE.strain.potency)?STATE.strain.potency:1;var highDose=dryG>6;var highPot=pot>=2.5;var lines=[];if(highDose)lines.push('<p class="vr-warn-yellow">⚠️ High dose — extreme intensity. Use caution.</p>');if(highPot)lines.push('<p class="vr-warn-yellow">⚠️ Very potent strain — <a onclick="closeAllModals();openFaqFromStrain(event,\'dosing\')" class="vr-link">extra caution advised</a>.</p>');if(tl>=5)lines.push('<p class="vr-warn-yellow">⚠️ Sober companion strongly recommended. <span style="white-space:nowrap"><a onclick="closeAllModals();openFaqFromStrain(event,\'bad-trip\')" class="vr-link">Trip sitting guide ›</a></span></p>');if(dryG<1.5)lines.push('<p class="vr-warn-info">ℹ️ Use a 0.01g precision scale — kitchen scales are not accurate enough.</p>');if(wlpLine)lines.push('<p class="vr-warn-yellow">⚠️ <a onclick="openFaqFromStrain(event,\'wood-lovers-paralysis\')" class="vr-link-yellow">Wood lover\'s paralysis risk</a> — never use alone.</p>');el.innerHTML=lines.length?'<div class="vr-warns">'+lines.join('')+'</div>':'';}function _sliderToGrams(slVal){
+function openFaqFromStrain(e,faqId){e.preventDefault();closeAllModals();var allSections=document.querySelectorAll(".seo-section");allSections.forEach(function(s){s.setAttribute("open","")});var faqEl=document.getElementById("faq-"+faqId);if(faqEl){var cat=faqEl.closest(".faq-cat");if(cat)cat.setAttribute("open","");faqEl.setAttribute("open","");setTimeout(function(){faqEl.scrollIntoView({behavior:"smooth",block:"start"})},180);}}function _vrConvertM(v,isMgM,isFreshM){var out=v;if(isFreshM)out=out*10;if(isMgM){out=Math.round(out*1000/10)*10;}else{out=parseFloat(out.toFixed(2));}return out.toString();}function _doseToLevel(dryG){var pot=(STATE.strain&&STATE.strain.potency)?STATE.strain.potency:1;var lf=STATE.lemonTek?0.88:1;var eq=dryG*pot/lf;if(eq<0.1)return 1;if(eq<=0.50)return 2;if(eq<=1.00)return 3;if(eq<=1.80)return 4;if(eq<=3.50)return 5;return 6;}var _vrWlpLine=false;function _vrUpdateWarnings(tl,wlpLine,slVal){var el=document.getElementById("vr-warnings");if(!el)return;var sv=typeof slVal==="number"?slVal:Math.max(0,(tl-1)*100/5);var highDose=sv>=85;var companion=sv>=70;var highPot=(STATE.strain&&STATE.strain.potency>=2.5);var lines=[];if(highDose)lines.push('<p class="vr-warn-yellow">⚠️ High dose — extreme intensity. Use caution.</p>');if(companion)lines.push('<p class="vr-warn-yellow">⚠️ Sober companion strongly recommended. <span style="white-space:nowrap"><a onclick="closeAllModals();openFaqFromStrain(event,\'bad-trip\')" class="vr-link">Trip sitting guide ›</a></span></p>');if(highPot)lines.push('<p class="vr-warn-yellow">⚠️ Very potent strain — <a onclick="closeAllModals();openFaqFromStrain(event,\'high-potency\')" class="vr-link">extra caution advised</a>.</p>');if(wlpLine)lines.push('<p class="vr-warn-yellow">⚠️ Wood lover\'s paralysis risk — <a onclick="openFaqFromStrain(event,\'wood-lovers-paralysis\')" class="vr-link">never use alone</a>.</p>');if(sv<=30)lines.push('<p class="vr-warn-info">ℹ️ Use a 0.01g precision scale — kitchen scales are not accurate enough.</p>');el.innerHTML=lines.length?'<div class="vr-warns">'+lines.join('')+'</div>':'';}function _sliderToGrams(slVal){
   // Pure base dry gram mapping — NO potency, NO lemon tek
   // Segments: micro 0-10, low 10-25, med 25-45, norm 45-65, high 65-85, heroic 85-95, spike 95-100
   var s=slVal;
-  if(s<=0)  return 0.05;
-  if(s<=10) return 0.05+((s)/10)*(0.10-0.05);
+  if(s<=0)  return 0.01;
+  if(s<=10) return 0.01+((s)/10)*(0.10-0.01);
   if(s<=25) return 0.10+((s-10)/15)*(0.50-0.10);
   if(s<=45) return 0.50+((s-25)/20)*(1.00-0.50);
   if(s<=65) return 1.00+((s-45)/20)*(1.80-1.00);
@@ -1563,7 +1586,10 @@ function openFaqFromStrain(e,faqId){e.preventDefault();closeAllModals();var allS
   return 6.00+((s-95)/5)*(20.00-6.00);
 }
 function _vrSliderUpdate(slVal){
-  var dryG=_sliderToGrams(slVal);
+  var baseG=_sliderToGrams(slVal);
+  var _pot=(STATE.strain&&STATE.strain.potency)?STATE.strain.potency:1;
+  var _lf=STATE.lemonTek?0.88:1;
+  var dryG=baseG/_pot*_lf;
   var isMgM=STATE.unitMode==="mg";
   var isFreshM=STATE.form==="fresh";
   var uLabel=isMgM?"mg":"g";
@@ -1581,15 +1607,15 @@ function _vrSliderUpdate(slVal){
   var levelEl=document.querySelector("#vr-level-row .vr-level-badge");
   if(levelEl){levelEl.textContent=tripNames[segLvl]||tripNames[STATE.tripLevel];}
   // Warnings only: may use _doseToLevel (text, not visual)
-  _vrUpdateWarnings(_doseToLevel(dryG),_vrWlpLine,dryG);
-}function togglePmTip(skipOpen){if(!STATE.strain||!STATE.tripLevel)return;var _elLevel=document.getElementById("vr-level-row");var _elDose=document.getElementById("vr-dose-main");var _elRange=document.getElementById("vr-range-row");var _elSave=document.getElementById("vr-save-row");var _elDisc=document.getElementById("vr-disclaimer");var _elTitle=document.getElementById("variance-title");if(!_elLevel||!_elDose)return;_vrWlpLine=WLP_SPECIES.some(function(w){return(STATE.strain.name+STATE.strain.origin).toLowerCase().includes(w);});var _tl=parseInt(STATE.tripLevel)||0;var _isMgM=STATE.unitMode==="mg";var _isFreshM=STATE.form==="fresh";var _uLabel=_isMgM?"mg":"g";if(_elTitle){_elTitle.innerHTML='<span class="hallucinate">'+(STATE.strain?STATE.strain.name:"Dose Estimate")+"</span>";}_elLevel.innerHTML='';var _slMin=0;var _slMax=100;var _initPot=(STATE.strain&&STATE.strain.potency)?STATE.strain.potency:1;var _initLf=STATE.lemonTek?0.88:1;var _initBaseG=_lastDose*_initLf/_initPot;var _lvlSliderMap={1:8,2:20,3:35,4:55,5:75,6:90};var _slVal=_lvlSliderMap[_tl]||50;var _fi=_isFreshM?"💧":"🌵";var _icons='<span class="vr-form-icon vr-mod--link" onclick="closeAllModals();openFaqFromStrain(event,\'storage\')">'+ _fi+"</span>"+(STATE.lemonTek?'<span class="vr-form-icon vr-mod--link" onclick="closeAllModals();openFaqFromStrain(event,\'preparation-methods\')">🍋</span>':"");_elDose.innerHTML='<div class="vr-main-dose" id="vr-main-dose-val"><span class="vr-dose-editable" id="vr-dose-num" title="Tap to edit" onclick="_vrStartEdit()">'+_vrConvertM(_lastDose,_isMgM,_isFreshM)+'</span><span class="vr-main-unit">'+_uLabel+"</span></div>"+"<div class=\"vr-form-icons\">"+ _icons+"</div>";if(_elSave){_elSave.innerHTML="<div class=\"vr-actions\"><button onclick=\"saveCurrentResult(this)\" class=\"vr-save-btn\">💾 Save</button><button onclick=\"copyShareLink(this)\" class=\"vr-save-btn\">🔗 Copy link</button></div>";}var _staticPct=_getDoseMapPct(_initBaseG);var _initLvl=Math.min(5,Math.floor(_slVal*6/100))+1;if(_elRange){_elRange.innerHTML='<div class="vr-map-container"><div class="vr-slider-wrap"><input type="range" id="vr-slider" class="vr-slider" min="'+_slMin+'" max="'+_slMax+'" step="1" value="'+_slVal+'"></div><div class="vr-map-overlay" id="vr-map-overlay"><div class="vr-map-dot-s" id="vr-map-dot-s" style="left:'+_staticPct+'%"></div></div><div class="vr-map-bar"><div class="vr-map-seg'+(_initLvl===1?' active':'')+'" id="vr-seg-1">micro</div><div class="vr-map-seg'+(_initLvl===2?' active':'')+'" id="vr-seg-2">low</div><div class="vr-map-seg'+(_initLvl===3?' active':'')+'" id="vr-seg-3">medium</div><div class="vr-map-seg'+(_initLvl===4?' active':'')+'" id="vr-seg-4">normal</div><div class="vr-map-seg'+(_initLvl===5?' active':'')+'" id="vr-seg-5">high</div><div class="vr-map-seg'+(_initLvl===6?' active':'')+'" id="vr-seg-6">heroic</div></div></div>';var _sl=document.getElementById('vr-slider');if(_sl){_sl.addEventListener('input',function(){_vrSliderUpdate(parseInt(this.value));});}}if(_elDisc){_elDisc.innerHTML='<p class="vr-disc" style="margin:6px 0 0">Not a prescription or a substitute for professional guidance.</p>';}_vrUpdateWarnings(_tl,_vrWlpLine,_lastDose);if(!skipOpen)openModal("variance-modal");}function strainToSlug(n){return n.toLowerCase().replace(/[()\[\]]/g,"").replace(/\s+/g,"-").replace(/[^a-z0-9\-+]/g,"").replace(/-+/g,"-").replace(/^-|-$/g,"")}function pushStrainUrl(s){if(location.protocol==="about:")return;try{var u=new URL(window.location.href);u.searchParams.set("strain",strainToSlug(s.name));history.replaceState(null,"",u.toString());}catch(e){}}function clearStrainUrl(){if(location.protocol==="about:")return;try{var u=new URL(window.location.href);if(u.searchParams.has("strain")){u.searchParams.delete("strain");history.replaceState(null,"",u.toString()||window.location.pathname);}}catch(e){}}function _updateBodyScroll(){var open=Array.from(document.querySelectorAll(".modal")).some(function(m){return m.style.display==="flex";});document.body.style.overflow=open?"hidden":"";}function openModal(id){_saveFocus();var _strainOpen=document.getElementById("strain-modal").style.display==="flex";document.querySelectorAll(".modal").forEach(function(e){e.style.display="none"});if(_strainOpen){try{clearStrainUrl();}catch(x){}}var m=document.getElementById(id);if(!m)return;m.style.display="flex";_updateBodyScroll();setTimeout(()=>_trapFocus(m),60);}function closeModal(e){document.getElementById(e).style.display="none";if(e==="strain-modal"){try{clearStrainUrl();}catch(x){}}_restoreFocus();_updateBodyScroll();}function closeAllModals(){var _strainOpen=document.getElementById("strain-modal").style.display==="flex";document.querySelectorAll(".modal").forEach(function(e){e.style.display="none"});if(_strainOpen){try{clearStrainUrl();}catch(x){}}_restoreFocus();_updateBodyScroll();}
+  _vrUpdateWarnings(_doseToLevel(baseG),_vrWlpLine,slVal);
+}function togglePmTip(skipOpen){if(!STATE.strain||!STATE.tripLevel)return;var _elLevel=document.getElementById("vr-level-row");var _elDose=document.getElementById("vr-dose-main");var _elRange=document.getElementById("vr-range-row");var _elSave=document.getElementById("vr-save-row");var _elDisc=document.getElementById("vr-disclaimer");var _elTitle=document.getElementById("variance-title");if(!_elLevel||!_elDose)return;_vrWlpLine=WLP_SPECIES.some(function(w){return(STATE.strain.name+STATE.strain.origin).toLowerCase().includes(w);});var _tl=parseInt(STATE.tripLevel)||0;var _isMgM=STATE.unitMode==="mg";var _isFreshM=STATE.form==="fresh";var _uLabel=_isMgM?"mg":"g";if(_elTitle){_elTitle.innerHTML='<span class="hallucinate">'+(STATE.strain?STATE.strain.name:"Dose Estimate")+"</span>";}_elLevel.innerHTML='';var _slMin=0;var _slMax=100;var _initPot=(STATE.strain&&STATE.strain.potency)?STATE.strain.potency:1;var _initLf=STATE.lemonTek?0.88:1;var _initBaseG=_lastDose*_initPot/_initLf;var _lvlSliderMap={1:8,2:20,3:35,4:55,5:75,6:90};var _slVal=(_lastDose>0&&_initBaseG>0)?Math.round(Math.max(0,Math.min(100,_getDoseMapPct(_initBaseG)))):(_lvlSliderMap[_tl]||50);var _fi=_isFreshM?"💧":"🌵";var _icons='<span class="vr-form-icon vr-mod--link" onclick="closeAllModals();openFaqFromStrain(event,\'storage\')">'+ _fi+"</span>"+(STATE.lemonTek?'<span class="vr-form-icon vr-mod--link" onclick="closeAllModals();openFaqFromStrain(event,\'preparation-methods\')">🍋</span>':"");_elDose.innerHTML='<div class="vr-main-dose" id="vr-main-dose-val"><span class="vr-dose-editable" id="vr-dose-num" title="Tap to edit" onclick="_vrStartEdit()">'+_vrConvertM(_lastDose,_isMgM,_isFreshM)+'</span><span class="vr-main-unit">'+_uLabel+"</span></div>"+"<div class=\"vr-form-icons\">"+ _icons+"</div>";if(_elSave){_elSave.innerHTML="<div class=\"vr-actions\"><button onclick=\"saveCurrentResult(this)\" class=\"vr-save-btn\">💾 Save</button><button onclick=\"copyShareLink(this)\" class=\"vr-save-btn\">🔗 Copy link</button></div>";}var _initLvl=Math.min(5,Math.floor(_slVal*6/100))+1;if(_elRange){_elRange.innerHTML='<div class="vr-map-container"><div class="vr-slider-wrap"><input type="range" id="vr-slider" class="vr-slider" min="'+_slMin+'" max="'+_slMax+'" step="1" value="'+_slVal+'"></div><div class="vr-map-bar"><div class="vr-map-seg'+(_initLvl===1?' active':'')+'" id="vr-seg-1">micro</div><div class="vr-map-seg'+(_initLvl===2?' active':'')+'" id="vr-seg-2">low</div><div class="vr-map-seg'+(_initLvl===3?' active':'')+'" id="vr-seg-3">medium</div><div class="vr-map-seg'+(_initLvl===4?' active':'')+'" id="vr-seg-4">normal</div><div class="vr-map-seg'+(_initLvl===5?' active':'')+'" id="vr-seg-5">high</div><div class="vr-map-seg'+(_initLvl===6?' active':'')+'" id="vr-seg-6">heroic</div></div></div>';var _sl=document.getElementById('vr-slider');if(_sl){_sl.addEventListener('input',function(){_vrSliderUpdate(parseInt(this.value));});_vrSliderUpdate(_slVal);}}if(_elDisc){_elDisc.innerHTML='<p class="vr-disc" style="margin:6px 0 0">Not a prescription or a substitute for professional guidance.</p>';}_vrUpdateWarnings(_tl,_vrWlpLine,_slVal);if(!skipOpen)openModal("variance-modal");}function strainToSlug(n){return n.toLowerCase().replace(/[()\[\]]/g,"").replace(/\s+/g,"-").replace(/[^a-z0-9\-+]/g,"").replace(/-+/g,"-").replace(/^-|-$/g,"")}function pushStrainUrl(s){if(location.protocol==="about:")return;try{var u=new URL(window.location.href);u.searchParams.set("strain",strainToSlug(s.name));history.replaceState(null,"",u.toString());}catch(e){}}function clearStrainUrl(){if(location.protocol==="about:")return;try{var u=new URL(window.location.href);if(u.searchParams.has("strain")){u.searchParams.delete("strain");history.replaceState(null,"",u.toString()||window.location.pathname);}}catch(e){}}function _updateBodyScroll(){var open=Array.from(document.querySelectorAll(".modal")).some(function(m){return m.style.display==="flex";});document.body.style.overflow=open?"hidden":"";}function openModal(id){_saveFocus();var _strainOpen=document.getElementById("strain-modal").style.display==="flex";document.querySelectorAll(".modal").forEach(function(e){e.style.display="none"});if(_strainOpen){try{clearStrainUrl();}catch(x){}}var m=document.getElementById(id);if(!m)return;m.style.display="flex";_updateBodyScroll();setTimeout(()=>_trapFocus(m),60);}function closeModal(e){document.getElementById(e).style.display="none";if(e==="strain-modal"){try{clearStrainUrl();}catch(x){}}_restoreFocus();_updateBodyScroll();}function closeAllModals(){var _strainOpen=document.getElementById("strain-modal").style.display==="flex";document.querySelectorAll(".modal").forEach(function(e){e.style.display="none"});if(_strainOpen){try{clearStrainUrl();}catch(x){}}_restoreFocus();_updateBodyScroll();}
 var _prevFocus=null;
 var _tripReturnTarget=null;
 function _saveFocus(){_prevFocus=document.activeElement}
 function _restoreFocus(){_prevFocus&&_prevFocus.focus&&(_prevFocus.focus(),_prevFocus=null)}
 function _trapFocus(modal){var sel='a[href],button:not([disabled]),input:not([disabled]),select,textarea,[tabindex]:not([tabindex="-1"])';var nodes=Array.from(modal.querySelectorAll(sel)).filter(function(e){return!e.closest('[style*="display:none"]')&&e.offsetParent!==null});if(!nodes.length)return;function handler(e){if("Tab"!==e.key)return;var first=nodes[0],last=nodes[nodes.length-1];e.shiftKey?document.activeElement===first&&(e.preventDefault(),last.focus()):document.activeElement===last&&(e.preventDefault(),first.focus())}modal._trapHandler&&modal.removeEventListener("keydown",modal._trapHandler);modal._trapHandler=handler;modal.addEventListener("keydown",handler);nodes[0].focus()}document.querySelectorAll(".modal").forEach(function(e){e.addEventListener("click",function(i){i.target===e&&closeAllModals()})}),document.querySelectorAll(".unit-btn").forEach(e=>{e.addEventListener("click",()=>{document.querySelectorAll(".unit-btn.active").forEach(function(b){b.classList.remove("active")});e.classList.add("active"),STATE.weightUnit=e.dataset.unit,STATE.interacted=true,savePrefs({unit:STATE.weightUnit}),update()})}),document.getElementById("weight").addEventListener("input",function(){STATE.interacted=true;var _wv=parseFloat(this.value);if(_wv>250&&STATE.weightUnit!=="lb"){this.value=250;_wv=250;}if(_wv>550&&STATE.weightUnit==="lb"){this.value=550;_wv=550;}STATE.weightRaw=this.value;STATE.weight=_wv;savePrefs({weight:this.value});update()}),document.getElementById("picker-search").addEventListener("keyup",function(e){renderStrainGrid(e.target.value.toLowerCase().trim())});var _sd=document.getElementById("strain-display");_sd.addEventListener("click",openStrainPicker);_sd.addEventListener("keydown",function(e){(e.key==="Enter"||e.key===" ")&&(e.preventDefault(),openStrainPicker())});var _td=document.getElementById("trip-display");_td.addEventListener("keydown",function(e){(e.key==="Enter"||e.key===" ")&&(e.preventDefault(),showTripInfo())});var _memStore={},Store={_ck:function(e){return"sr_"+e.replace(/[^a-z0-9_]/gi,"_")},get:function(e){try{var i=localStorage.getItem(e);if(null!==i)return i}catch(e){}try{var n=this._ck(e),t=document.cookie.match("(?:^|;)\\s*"+n+"=([^;]*)");if(t)return decodeURIComponent(t[1])}catch(e){}return e in _memStore?_memStore[e]:null},set:function(e,i){try{localStorage.setItem(e,i)}catch(e){}try{var n=this._ck(e),t=new Date(Date.now()+31536e6).toUTCString();document.cookie=n+"="+encodeURIComponent(i)+";expires="+t+";path=/;SameSite=Lax"}catch(e){}_memStore[e]=i},remove:function(e){try{localStorage.removeItem(e)}catch(e){}try{var i=this._ck(e);document.cookie=i+"=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;SameSite=Lax"}catch(e){}delete _memStore[e]}},PREFS_KEY="shroom_prefs_v1";function loadPrefs(){try{return JSON.parse(Store.get(PREFS_KEY)||"{}")}catch(e){return{}}}function savePrefs(e){try{var i=loadPrefs();Object.assign(i,e);i.lemonTek=STATE.lemonTek;i.unitMode=STATE.unitMode;i.form=STATE.form;i.unit=STATE.weightUnit;Store.set(PREFS_KEY,JSON.stringify(i))}catch(e){}}document.addEventListener("DOMContentLoaded",()=>{const e=document.querySelector('[data-unit="kg"]'),i=document.querySelector('[data-unit="lb"]');var n=loadPrefs(),t=n.unit;if(t==="kg"||t==="lb"){var _ub=document.querySelector('[data-unit="'+t+'"]');if(_ub)_ub.classList.add("active");STATE.weightUnit=t;}if(n.weight){document.getElementById("weight").value=n.weight;STATE.weightRaw=n.weight;STATE.weight=parseFloat(n.weight);}if(n.strain&&!new URLSearchParams(window.location.search).get("strain")){var s=STRAINS.find(function(e){return e.name===n.strain});s&&(STATE.strain=s,STATE.interacted=true,updateStrainDisplay())}if(n.tripLevel){var r=n.tripLevel;document.getElementById("trip-level").value=r;STATE.tripLevel=r;var c=document.getElementById("trip-display");c.textContent=tripNames[r]||"Trip Level",c.classList.add("has-value"),c.style.color="#9b59b6",c.style.webkitTextFillColor="#9b59b6",STATE.interacted=true}if(n.lemonTek!==undefined)STATE.lemonTek=n.lemonTek;if(n.unitMode)STATE.unitMode=n.unitMode;if(n.form)STATE.form=n.form;(n.strain||n.tripLevel)&&update();_syncAdvPanel();
   // Share link param overrides (run after prefs so URL wins)
-  if(location.protocol!=="about:"){try{var _sp=new URLSearchParams(window.location.search);var _sl=_sp.get("level"),_sw=_sp.get("weight"),_su=_sp.get("unit"),_sln=_sp.get("lemon"),_sf=_sp.get("form"),_sd=_sp.get("display"),_sc=false;if(_sl&&["1","2","3","4","5","6"].includes(_sl)){STATE.tripLevel=_sl;STATE.interacted=true;document.getElementById("trip-level").value=_sl;var _td2=document.getElementById("trip-display");if(_td2){_td2.textContent=tripNames[_sl]||"Trip Level";_td2.classList.add("has-value");_td2.style.color="#9b59b6";_td2.style.webkitTextFillColor="#9b59b6";}_sc=true;}if(_sw){var _wv=parseFloat(_sw);if(_wv>0&&_wv<500){STATE.weight=_wv;STATE.weightRaw=_sw;STATE.interacted=true;document.getElementById("weight").value=_sw;_sc=true;}}if(_su==="kg"||_su==="lb"){STATE.weightUnit=_su;document.querySelectorAll(".unit-btn").forEach(function(b){b.classList.toggle("active",b.dataset.unit===_su);});_sc=true;}if(_sln==="1"){if(!STATE.lemonTek){STATE.lemonTek=true;_sc=true;}}else if(_sln==="0"){if(STATE.lemonTek){STATE.lemonTek=false;_sc=true;}}if(_sf==="fresh"||_sf==="dry"){if(STATE.form!==_sf){STATE.form=_sf;_sc=true;}}if(_sd==="mg"||_sd==="g"){if(STATE.unitMode!==_sd){STATE.unitMode=_sd;_sc=true;}}if(_sc){_syncAdvPanel();update();}}catch(x){}}{const e="shroom_disc_v4",n=document.getElementById("close-disclaimer"),t=document.getElementById("countdown-text");n.addEventListener("click",function(){closeModal("disclaimer-popup");Store.set(e,Date.now().toString());t.textContent="";});const a=parseInt(Store.get(e)||"0");if(Date.now()-a>3456e5){openModal("disclaimer-popup");if(0===a){let e=7;t.textContent=e;const i=setInterval(()=>{e--,e>0?t.textContent=e:(clearInterval(i),t.textContent="",n.style.display="inline-block")},1e3)}else{t.textContent="";n.style.display="inline-block"}}}});
+  if(location.protocol!=="about:"){try{var _sp=new URLSearchParams(window.location.search);var _sl=_sp.get("level"),_sw=_sp.get("weight"),_su=_sp.get("unit"),_sln=_sp.get("lemon"),_sf=_sp.get("form"),_sd=_sp.get("display"),_sc=false;var _ss=_sp.get("strain");if(_ss){var _sm=STRAINS.find(function(x){return strainToSlug(x.name)===_ss;});if(_sm){STATE.strain=_sm;STATE.interacted=true;updateStrainDisplay();_sc=true;}}if(_sl&&["1","2","3","4","5","6"].includes(_sl)){STATE.tripLevel=_sl;STATE.interacted=true;document.getElementById("trip-level").value=_sl;var _td2=document.getElementById("trip-display");if(_td2){_td2.textContent=tripNames[_sl]||"Trip Level";_td2.classList.add("has-value");_td2.style.color="#9b59b6";_td2.style.webkitTextFillColor="#9b59b6";}_sc=true;}if(_sw){var _wv=parseFloat(_sw);if(_wv>0&&_wv<500){STATE.weight=_wv;STATE.weightRaw=_sw;STATE.interacted=true;document.getElementById("weight").value=_sw;_sc=true;}}if(_su==="kg"||_su==="lb"){STATE.weightUnit=_su;document.querySelectorAll(".unit-btn").forEach(function(b){b.classList.toggle("active",b.dataset.unit===_su);});_sc=true;}if(_sln==="1"){if(!STATE.lemonTek){STATE.lemonTek=true;_sc=true;}}else if(_sln==="0"){if(STATE.lemonTek){STATE.lemonTek=false;_sc=true;}}if(_sf==="fresh"||_sf==="dry"){if(STATE.form!==_sf){STATE.form=_sf;_sc=true;}}if(_sd==="mg"||_sd==="g"){if(STATE.unitMode!==_sd){STATE.unitMode=_sd;_sc=true;}}if(_sc){_syncAdvPanel();update();var _rt=document.getElementById("result");if(_rt&&_rt.style.display!=="none"){setTimeout(function(){_rt.scrollIntoView({behavior:"smooth",block:"center"});},150);}}}catch(x){}}{const e="shroom_disc_v4",n=document.getElementById("close-disclaimer"),t=document.getElementById("countdown-text");n.addEventListener("click",function(){closeModal("disclaimer-popup");Store.set(e,Date.now().toString());t.textContent="";});const a=parseInt(Store.get(e)||"0");if(Date.now()-a>6048e5){openModal("disclaimer-popup");if(0===a){let e=7;t.textContent=e;const i=setInterval(()=>{e--,e>0?t.textContent=e:(clearInterval(i),t.textContent="",n.style.display="inline-block")},1e3)}else{t.textContent="";n.style.display="inline-block"}}}});
 </script>
 
   <script>
@@ -1608,14 +1634,6 @@ function _trapFocus(modal){var sel='a[href],button:not([disabled]),input:not([di
 !function(){var T;function p(){document.querySelectorAll(".wlily").forEach(function(e){e.remove()});var e=document.querySelector(".container");if(!e||!e.offsetWidth)return;var t=e.offsetWidth,n=e.offsetHeight,o=window.innerWidth<500,r=o?.5:.7,i=o?.8:1.1,d=[],c=0;while(c<1+Math.floor(3*Math.random())&&c<5){var s=r+Math.random()*(i-r),f=120*s,u=Math.random()<.5?"L":"R",v=Math.floor(Math.random()*360),g=(.18+.17*Math.random()).toFixed(2),q=Math.max(.5*f,40),y=Math.max(n-2*q,10),w,ok=false,tries=0;while(tries<40){w=q+Math.random()*y;ok=d.every(function(e){return e.side!==u||Math.abs(e.yOff-w)>=1.1*f});if(ok)break;tries++}if(ok)d.push({sz:f,side:u,rot:v,op:g,yOff:w});c++}var idx=[0,1,2,3,4];for(var j=4;j>0;j--){var k=Math.floor(Math.random()*(j+1)),tmp=idx[j];idx[j]=idx[k];idx[k]=tmp}d.forEach(function(r,i){var tpl=document.getElementById("wlt"+idx[i%5]);if(!tpl)return;var hang=r.sz*(o?.35:.5),left="L"===r.side?-hang:t-r.sz+hang,top=r.yOff-.5*r.sz,el=document.createElement("div");el.className="wlily";el.style.cssText="position:absolute;left:"+left+"px;top:"+top+"px;width:"+r.sz+"px;height:"+r.sz+"px;transform:rotate("+r.rot+"deg);pointer-events:none;z-index:-2;transform-origin:center center;opacity:"+r.op+";";el.innerHTML=tpl.innerHTML;var sv=el.querySelector("svg");sv&&(sv.style.width="100%",sv.style.height="100%");var fl=el.querySelector("[id^=\"lf\"]");if(fl){fl.style.filter="hue-rotate("+Math.floor(Math.random()*360)+"deg) saturate(2.5) brightness(1.1)"}e.appendChild(el)})}document.addEventListener("DOMContentLoaded",p);var _wlilyRh=function(){clearTimeout(T);T=setTimeout(p,240)};window._wlilyResize&&window.removeEventListener("resize",window._wlilyResize);window._wlilyResize=_wlilyRh;window.addEventListener("resize",_wlilyRh);}();
 </script>
 
-  <!-- Note mini-modal -->
-  <div id="note-modal-overlay" style="display:none" onclick="if(event.target===this)_closeNoteModal(true)" role="dialog" aria-modal="true" aria-label="Edit note">
-    <div class="note-modal-box" onclick="event.stopPropagation()">
-      <span class="note-modal-label">Note</span>
-      <textarea id="note-modal-ta" class="note-modal-textarea" placeholder="Add a note…" maxlength="500"></textarea>
-      <button class="note-modal-done" onclick="_closeNoteModal(true)">✓ Done</button>
-    </div>
-  </div>
 
 <footer class="site-footer" style="text-align:center;padding:8px 0 7px;font-size:0.75rem;color:#555;letter-spacing:0.04em">
   © 2026 Shroomulator — All rights reserved. Non-commercial use only.
@@ -1647,5 +1665,14 @@ function _trapFocus(modal){var sel='a[href],button:not([disabled]),input:not([di
   });
 })();
 </script>
+
+  <!-- Note mini-modal -->
+  <div id="note-modal" class="modal" onclick="if(event.target===this)_closeNoteModal(true)" role="dialog" aria-modal="true" aria-label="Edit note">
+    <div class="note-modal-box" onclick="event.stopPropagation()">
+      <span class="note-modal-label">Note</span>
+      <textarea id="note-modal-ta" class="note-modal-textarea" placeholder="Add a note…" maxlength="500"></textarea>
+      <button class="note-modal-done" onclick="_closeNoteModal(true)">✓ Done</button>
+    </div>
+  </div>
 </body>
 </html>
