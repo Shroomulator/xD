@@ -1,5 +1,3 @@
-# 🍄 Shroomulator
-
 ![Shroomulator Preview](assets/og-image.png)
 
 👉 **[Launch Shroomulator](https://shroomulator.github.io/xD/)**
