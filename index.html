@@ -116,7 +116,7 @@ body{background:var(--bg);color:var(--text-1);font-family:Arial,sans-serif;margi
 
 /* ── Number input ─────────────────────────────────── */
 input[type="number"]::placeholder{color:var(--orange);font-size:13px;font-weight:600;letter-spacing:0.04em;opacity:1}
-input[type="number"]{height:42px;padding:0 10px;background:var(--surface);color:var(--orange);-webkit-text-fill-color:var(--orange);font-size:20px;font-weight:600;border:1px solid var(--border);border-radius:8px 0 0 8px;border-right:none;transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease);flex:1;min-width:0;touch-action:manipulation;-webkit-appearance:none}
+input[type="number"]{height:42px;padding:0 10px;background:rgba(255,255,255,0.04);color:var(--orange);-webkit-text-fill-color:var(--orange);font-size:20px;font-weight:600;border:1px solid rgba(255,255,255,0.11);border-radius:8px 0 0 8px;border-right:none;transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease);flex:1;min-width:0;touch-action:manipulation;-webkit-appearance:none;box-shadow:0 1px 0 rgba(255,255,255,0.04) inset,0 2px 6px rgba(0,0,0,0.3)}
 input[type="number"]:focus{border-color:var(--border-focus);box-shadow:0 0 0 3px rgba(155,89,182,0.15);outline:none}
 input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;appearance:none;margin:0}
 input[type="number"]{-moz-appearance:textfield}
@@ -140,13 +140,13 @@ input[type="number"]{-moz-appearance:textfield}
 .info-btn:hover,.info-btn:active{color:var(--orange-l);border-color:var(--orange-l);background:rgba(255,165,0,0.1)}
 
 /* ── Strain & Trip selectors ──────────────────────── */
-.strain-display{width:100%;height:42px;padding:0 12px;background:var(--surface);color:var(--text-m);border:1px solid var(--border);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:600;box-sizing:border-box;transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease),background var(--dur) var(--ease);user-select:none;gap:6px;touch-action:manipulation}
+.strain-display{width:100%;height:42px;padding:0 12px;background:rgba(255,255,255,0.04);color:var(--text-m);border:1px solid rgba(255,255,255,0.11);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:600;box-sizing:border-box;transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease),background var(--dur) var(--ease);user-select:none;gap:6px;touch-action:manipulation;box-shadow:0 1px 0 rgba(255,255,255,0.04) inset,0 2px 6px rgba(0,0,0,0.3)}
 .strain-display::after{content:""}
 .strain-display:hover{border-color:rgba(155,89,182,0.5);background:var(--surface-hi);box-shadow:0 0 0 3px rgba(155,89,182,0.10)}
 .strain-display.has-value{font-size:13px}
 .strain-display-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
 .strain-display:focus-visible{outline:2px solid var(--purple);outline-offset:2px}
-#trip-display{width:100%;height:42px;padding:0 12px;background:var(--surface);color:var(--purple);border:1px solid var(--border);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:600;box-sizing:border-box;transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease),background var(--dur) var(--ease);user-select:none;touch-action:manipulation}
+#trip-display{width:100%;height:42px;padding:0 12px;background:rgba(255,255,255,0.04);color:var(--purple);border:1px solid rgba(255,255,255,0.11);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:600;box-sizing:border-box;transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease),background var(--dur) var(--ease);user-select:none;touch-action:manipulation;box-shadow:0 1px 0 rgba(255,255,255,0.04) inset,0 2px 6px rgba(0,0,0,0.3)}
 #trip-display::after{content:""}
 #trip-display:hover{border-color:rgba(155,89,182,0.5);background:var(--surface-hi);box-shadow:0 0 0 3px rgba(155,89,182,0.10)}
 
@@ -156,12 +156,12 @@ input[type="number"]{-moz-appearance:textfield}
 
 /* ── Modals ───────────────────────────────────────── */
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.82);justify-content:center;align-items:center;z-index:1000;overscroll-behavior:contain}
-.modal-content{background:var(--surface);padding:0;border-radius:18px;width:auto;min-width:min(300px,88vw);max-width:min(520px,92vw);text-align:center;color:var(--text-1);box-sizing:border-box;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.8),0 0 0 1px rgba(255,255,255,0.09);animation:modalIn 200ms var(--ease) both}
+.modal-content{background:#111115;padding:0;border-radius:18px;width:auto;min-width:min(300px,88vw);max-width:min(520px,92vw);text-align:center;color:var(--text-1);box-sizing:border-box;overflow:hidden;box-shadow:0 0 0 1px rgba(0,0,0,0.9),0 0 0 2px rgba(255,255,255,0.06),0 24px 64px rgba(0,0,0,0.9),0 4px 16px rgba(0,0,0,0.6);animation:modalIn 200ms var(--ease) both}
 #trip-info-modal .modal-content{overflow-y:auto;max-height:92vh}
 .modal-header{width:100%;padding:8px 10px 0;text-align:center;box-sizing:border-box}
-.modal-header-badge{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:9px 14px;background:#14141b;border:1px solid var(--border);border-radius:10px;box-sizing:border-box}
-.modal-title,.trip-modal-title{color:var(--text-1);font-size:1rem;font-weight:600;letter-spacing:0.04em;margin:0;text-align:center;text-decoration:none}
-.modal-title-icon{opacity:0.6;flex-shrink:0}
+.modal-header-badge{display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:10px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14);border-radius:10px;box-sizing:border-box;box-shadow:0 1px 0 rgba(255,255,255,0.1) inset,0 3px 12px rgba(0,0,0,0.5)}
+.modal-title,.trip-modal-title{color:#f0eaff;font-size:0.95rem;font-weight:700;letter-spacing:0.06em;margin:0;text-align:center;text-decoration:none;text-shadow:0 0 20px rgba(195,154,216,0.3)}
+.modal-title-icon{opacity:0.85;flex-shrink:0;filter:drop-shadow(0 0 4px rgba(155,89,182,0.5))}
 .modal-close{display:none}
 .modal-body{padding:16px 18px 16px;overflow-y:auto;max-height:calc(92vh - 80px)}
 .modal-body::-webkit-scrollbar{width:4px}
@@ -193,7 +193,7 @@ input[type="number"]{-moz-appearance:textfield}
 .strain-list-item.selected{color:var(--purple-l);font-weight:600}
 
 /* ── Result box ───────────────────────────────────── */
-#result{width:100%;padding:0;background:var(--surface);border:1px solid rgba(255,255,255,0.13);border-radius:10px;box-sizing:border-box;animation:fadeIn 0.35s}
+#result{width:100%;padding:0;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.11);border-radius:10px;box-sizing:border-box;animation:fadeIn 0.35s;box-shadow:0 1px 0 rgba(255,255,255,0.05) inset,0 4px 12px rgba(0,0,0,0.4)}
 #result.result--empty{padding:10px 16px;text-align:center;color:var(--text-m);font-size:0.875rem}
 #result-empty{display:flex;align-items:center;justify-content:center;padding:8px 16px;text-align:center;color:var(--text-m);font-size:0.875rem;line-height:1.4;min-height:0}
 .picker-no-results{color:var(--text-m);text-align:center;padding:20px 0;font-size:0.875rem}
@@ -287,11 +287,11 @@ input[type="number"]{-moz-appearance:textfield}
 /* ── FAQ categories and items ─────────────────────── */
 .faq-list{margin:0;display:flex;flex-direction:column;gap:0}
 .faq-item{border-bottom:1px solid rgba(100,70,160,0.15)}
-.faq-cat{border:1px solid rgba(155,89,182,0.2);border-radius:10px;margin-bottom:10px;overflow:hidden}
+.faq-cat{border:1px solid rgba(255,255,255,0.09);border-radius:10px;margin-bottom:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.35)}
 .faq-cat>summary span:first-child,.formula-section>summary span:first-child{display:inline-flex;align-items:center;justify-content:center;width:1.4em;flex-shrink:0}
-.faq-cat>summary{display:flex;align-items:center;gap:8px;padding:10px 14px;cursor:pointer;background:rgba(155,89,182,0.06);list-style:none;font-size:0.875rem;font-weight:700;letter-spacing:0.08em;color:var(--purple-l);text-transform:uppercase;user-select:none}
+.faq-cat>summary{display:flex;align-items:center;gap:8px;padding:10px 14px;cursor:pointer;background:rgba(255,255,255,0.04);list-style:none;font-size:0.875rem;font-weight:700;letter-spacing:0.08em;color:var(--purple-l);text-transform:uppercase;user-select:none}
 .faq-cat>summary::-webkit-details-marker{display:none}
-.faq-cat>summary:hover{background:rgba(155,89,182,0.12);color:#ddc8f5}
+.faq-cat>summary:hover{background:rgba(255,255,255,0.07);color:#ddc8f5}
 .faq-cat>summary::after{content:"▾";margin-left:auto;font-size:1.35em;color:rgba(255,255,255,0.6);transition:transform var(--dur) var(--ease)}
 .faq-cat[open]>summary::after{transform:rotate(180deg)}
 .faq-cat-body{padding:4px 0 6px}
@@ -324,13 +324,13 @@ input[type="number"]{-moz-appearance:textfield}
 
 /* ── Disclaimer modal ─────────────────────────────── */
 .disc-section{margin:0}
-.disc-main{font-size:0.9rem;line-height:1.65;color:var(--text-1);margin:0 0 10px}
+.disc-main{font-size:0.82rem;line-height:1.65;color:var(--text-2);margin:0 0 8px}
 .disc-main:last-child{margin-bottom:0}
 .disc-main--notice{margin-bottom:0}
-.disc-accent{color:var(--purple);font-weight:700;font-style:normal}
-.disc-divider{border:none;border-top:1px solid var(--border);margin:14px 0}
-.disc-label{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--purple-l);margin:0 0 8px}
-.disc-secondary{font-size:0.875rem;line-height:1.65;color:var(--text-2);margin:0}
+.disc-accent{color:var(--purple-l);font-weight:700;font-style:normal}
+.disc-divider{border:none;border-top:1px solid var(--border);margin:12px 0}
+.disc-label{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--purple-l);margin:0 0 6px;opacity:0.7}
+.disc-secondary{font-size:0.82rem;line-height:1.65;color:var(--text-2);margin:0}
 .disc-safetylink{text-align:center;margin:0}
 .disc-link{color:var(--purple);text-decoration:underline;text-underline-offset:2px;text-decoration-color:rgba(155,89,182,0.35);cursor:pointer;transition:color var(--dur) var(--ease)}
 .disc-link:hover{color:var(--purple-l);text-decoration-color:rgba(195,154,216,0.6)}
@@ -413,7 +413,7 @@ body{padding-bottom:36px}
 /* ── Dose map ── */
 .vr-map-container{background:rgba(255,255,255,0.025);border:1px solid var(--border);border-radius:8px;padding:12px 12px 10px;margin:12px 0 0}
 .vr-map-bar{display:flex;border-radius:4px;overflow:hidden;border:1px solid var(--border);margin:4px 9px 0}
-.vr-map-seg{flex:1;padding:14px 2px;text-align:center;font-size:0.67rem;font-weight:600;color:var(--text-2);transition:background 150ms var(--ease),color 150ms var(--ease),box-shadow 150ms var(--ease);border-right:1px solid rgba(255,255,255,0.07);white-space:nowrap;overflow:hidden;line-height:1.2;letter-spacing:0.02em;user-select:none;text-transform:uppercase}
+.vr-map-seg{flex:1;padding:10px 1px;text-align:center;font-size:0.58rem;font-weight:600;color:var(--text-2);transition:background 150ms var(--ease),color 150ms var(--ease),box-shadow 150ms var(--ease);border-right:1px solid rgba(255,255,255,0.07);white-space:normal;overflow:hidden;line-height:1.2;letter-spacing:0.01em;user-select:none;text-transform:uppercase;word-break:break-word}
 .vr-map-seg:last-child{border-right:none}
 .vr-map-seg.active{background:rgba(155,89,182,0.28);color:var(--text-1);box-shadow:inset 0 0 0 1px rgba(155,89,182,0.35)}
 .vr-disc{font-size:0.75rem;color:var(--text-m);text-align:center;line-height:1.5;margin:6px 0 0}
@@ -438,18 +438,22 @@ body{padding-bottom:36px}
 .eq-footnote{color:var(--text-m);font-size:0.75rem;text-align:center;margin:12px 0 0;line-height:1.5}
 
 /* ── Timeline modal ───────────────────────────────── */
-.timeline{display:flex;flex-direction:column;gap:4px}
-.timeline-phase{display:flex;align-items:center;gap:12px;padding:10px 12px;background:rgba(255,255,255,0.025);border-radius:8px;border:1px solid var(--border)}
-.timeline-phase--peak{background:rgba(155,89,182,0.1);border-color:rgba(155,89,182,0.22)}
-.timeline-phase--peak .tl-title{color:#e0b8ff}
-.tl-title{font-size:0.875rem;font-weight:700;letter-spacing:0.04em;color:var(--text-2);flex-shrink:0;width:72px;white-space:nowrap}
-.tl-time{font-size:0.875rem;font-weight:700;color:var(--text-1);flex-shrink:0;width:70px;letter-spacing:0.01em}
-.tl-desc{font-size:0.8rem;color:var(--text-m);flex:1;text-align:right}
-.tl-footnote{font-size:0.75rem;color:var(--text-m);text-align:center;margin:12px 0 0;line-height:1.5}
+.tl-phases{display:flex;flex-direction:column;gap:6px}
+.tl-phase{display:grid;grid-template-columns:22px auto;grid-template-rows:auto auto;align-items:center;column-gap:10px;row-gap:4px;padding:9px 12px;border-radius:9px;border:1px solid var(--border);background:rgba(255,255,255,0.02)}
+.tl-phase--peak{background:rgba(155,89,182,0.08);border-color:rgba(155,89,182,0.25)}
+.tl-phase--afterglow{background:rgba(100,180,255,0.04);border-color:rgba(100,180,255,0.12)}
+.tl-icon{font-size:1rem;text-align:center;grid-row:1;grid-column:1}
+.tl-meta{display:flex;align-items:baseline;gap:8px;grid-row:1;grid-column:2}
+.tl-name{font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-2);white-space:nowrap}
+.tl-phase--peak .tl-name{color:#e0b8ff}
+.tl-phase--afterglow .tl-name{color:#8ec8f0}
+.tl-dur{font-size:0.8rem;font-weight:700;color:var(--text-1);white-space:nowrap}
+.tl-note{font-size:0.72rem;color:#9d99b4;line-height:1.5;grid-row:2;grid-column:2}
+.tl-footnote{font-size:0.72rem;color:var(--text-m);text-align:center;margin:12px 0 0;line-height:1.5}
 
 /* ── Background / cosmos ──────────────────────────── */
-#cosmos{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;filter:blur(2px);opacity:0.7}
-body::before{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(ellipse 90% 60% at 15% 25%,rgba(20,10,80,0.35) 0%,transparent 65%),radial-gradient(ellipse 70% 80% at 88% 75%,rgba(5,30,70,0.28) 0%,transparent 60%),radial-gradient(ellipse 55% 50% at 50% 0%,rgba(10,40,60,0.20) 0%,transparent 55%),radial-gradient(ellipse 80% 45% at 5% 90%,rgba(8,20,50,0.18) 0%,transparent 60%)}
+#cosmos{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;filter:blur(1.2px);opacity:0.5}
+body::before{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(ellipse 120% 60% at 50% -10%,rgba(80,50,120,0.18) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 50% 100%,rgba(0,0,0,0.45) 0%,transparent 70%),radial-gradient(ellipse 40% 35% at 90% 10%,rgba(30,20,60,0.12) 0%,transparent 55%)}
 
 /* ── Overflow body state ──────────────────────────── */
 .modal-body,.faq-answer,.strain-modal-desc,.strain-modal-name,.strain-modal-origin,.result-warnings,.warn--danger,.warn--strong{word-break:break-word;overflow-wrap:break-word}
@@ -719,11 +723,11 @@ body[style*="overflow: hidden"]>footer{visibility:hidden}
     </div>
     <style>
       #advanced-panel{max-height:0;overflow:hidden;transition:max-height 200ms cubic-bezier(0.4,0,0.2,1),opacity 200ms cubic-bezier(0.4,0,0.2,1);opacity:0}
-      #advanced-panel.adv-open{max-height:300px;opacity:1}
+      #advanced-panel.adv-open{max-height:320px;opacity:1}
       #advanced-toggle.adv-open{color:#9b59b6}
       #advanced-toggle.adv-open span{display:inline-block;transform:rotate(180deg)}
-      .adv-grid{display:grid;grid-template-columns:repeat(3,75px);gap:5px;padding:6px 0;justify-content:center}
-      .adv-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:0;text-align:center;cursor:pointer;transition:background 200ms cubic-bezier(0.4,0,0.2,1),border-color 200ms cubic-bezier(0.4,0,0.2,1),box-shadow 200ms cubic-bezier(0.4,0,0.2,1);-webkit-tap-highlight-color:transparent;width:75px;height:75px;box-sizing:border-box;overflow:hidden}
+      .adv-grid{display:grid;grid-template-columns:repeat(3,84px);gap:5px;padding:6px 0;justify-content:center}
+      .adv-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:0;text-align:center;cursor:pointer;transition:background 200ms cubic-bezier(0.4,0,0.2,1),border-color 200ms cubic-bezier(0.4,0,0.2,1),box-shadow 200ms cubic-bezier(0.4,0,0.2,1);-webkit-tap-highlight-color:transparent;width:84px;height:84px;box-sizing:border-box;overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,0.05) inset,0 2px 6px rgba(0,0,0,0.3)}
       .adv-item--action:hover,.adv-item:hover{background:rgba(155,89,182,0.08);border-color:rgba(155,89,182,0.3);box-shadow:0 0 0 3px rgba(155,89,182,0.08)}
       .adv-item:active{background:rgba(155,89,182,0.18)}
       .adv-item--empty{cursor:default;background:transparent;border-color:transparent}
@@ -734,14 +738,15 @@ body[style*="overflow: hidden"]>footer{visibility:hidden}
       .adv-item.active .adv-item-label{color:#c39ad8}
       .adv-item.lemon-off .adv-item-icon{filter:grayscale(1);opacity:0.5}
       .adv-checkbox{display:none}
-      .adv-item--seg{cursor:default;gap:3px}
+      .adv-item--seg{cursor:default;gap:2px;padding:8px 0 10px}
+      .adv-item--seg .adv-item-label{margin-bottom:4px}
       .adv-seg-top{position:absolute;top:0;left:0;right:0;height:55%;border-radius:8px 8px 0 0;cursor:pointer;-webkit-tap-highlight-color:transparent;z-index:1}
       .adv-seg-top:hover{background:rgba(155,89,182,0.12)}
       .adv-seg-top:active{background:rgba(155,89,182,0.2)}
       .adv-info-badge{display:inline-flex;align-items:center;justify-content:center;width:12px;height:12px;border-radius:50%;border:1px solid rgba(155,89,182,0.6);color:rgba(155,89,182,0.9);font-size:0.45rem;font-weight:800;margin-left:3px;vertical-align:middle;line-height:1}
       .adv-item--seg:hover{background:rgba(255,255,255,0.03);border-color:rgba(255,255,255,0.07);box-shadow:none}
       .adv-seg-title{display:none}
-      .adv-seg-pill{display:flex;border-radius:4px;background:rgba(0,0,0,0.4);overflow:hidden;width:78%;height:14px;flex-shrink:0}
+      .adv-seg-pill{display:flex;border-radius:4px;background:rgba(0,0,0,0.4);overflow:hidden;width:78%;height:14px;flex-shrink:0;align-self:center}
       .adv-seg-opt{flex:1;background:transparent;border:none;color:rgba(255,255,255,0.3);font-size:0.5rem;font-weight:800;letter-spacing:0.02em;text-transform:uppercase;padding:0;cursor:pointer;transition:background 150ms,color 150ms;-webkit-tap-highlight-color:transparent;line-height:14px;text-align:center}
       .adv-seg-opt:hover{color:rgba(255,255,255,0.5);background:rgba(155,89,182,0.15)}
       .adv-item--seg:not(.active) .adv-seg-opt:first-child{background:rgba(155,89,182,0.28);color:#d4a8f0}
@@ -767,7 +772,7 @@ body[style*="overflow: hidden"]>footer{visibility:hidden}
   </div></div>
 
   <!-- SEO content -->
-  <p style="max-width:500px;margin:8px auto 12px;text-align:center;font-size:0.75rem;color:#888;line-height:1.5">For harm reduction purposes only. Not medical advice. Psilocybin is a controlled substance — know your local laws.</p>
+  <p style="max-width:500px;margin:8px auto 12px;text-align:center;font-size:0.75rem;color:#555;line-height:1.5;letter-spacing:0.02em">For harm reduction purposes only. Not medical advice. Psilocybin is a controlled substance — know your local laws.</p>
 
   <details class="seo-section" aria-label="Dosage guide and frequently asked questions">
     <summary>HOW IT WORKS &nbsp;/&nbsp; F.A.Q.</summary>
@@ -1086,8 +1091,7 @@ People microdose for different reasons — focus and creative work, mood stabili
     <div class="modal-content">
       <div class="modal-header"><div class="modal-header-badge"><span class="modal-title-icon">🔬</span><h2 class="modal-title">Dose Comparison</h2></div></div>
       <div class="modal-body">
-        <p style="color:#888;font-size:0.875rem;text-align:center;margin:0 0 16px">Approximate equivalents based on your dose</p>
-        <div id="equivalence-row-slot"></div>
+                <div id="equivalence-row-slot"></div>
         <p class="eq-footnote">Approximate equivalence. Effects vary significantly by substance, context, and individual sensitivity.</p>
       </div>
       <div class="modal-buttons">
@@ -1100,35 +1104,52 @@ People microdose for different reasons — focus and creative work, mood stabili
   <div id="timeline-modal" class="modal" role="dialog" aria-modal="true" aria-label="Trip timeline">
     <div class="modal-content">
       <div class="modal-header"><div class="modal-header-badge"><span class="modal-title-icon">⏱</span><h2 class="modal-title">Trip Timeline</h2></div></div>
-      <div class="modal-body">
-        <div class="timeline">
-          <div class="timeline-phase">
-            <span class="tl-title">Onset</span>
-            <span class="tl-time">20 – 60 min</span>
-            <span class="tl-desc">Subtle changes begin</span>
+      <div class="modal-body" style="padding:16px 16px 8px">
+
+        <div class="tl-phases">
+          <div class="tl-phase">
+            <span class="tl-icon">🌱</span>
+            <div class="tl-meta">
+              <span class="tl-name">Onset</span>
+              <span class="tl-dur">20 – 60 min</span>
+            </div>
+            <span class="tl-note">First signals — mild warmth, colour shifts, light nausea possible. Body begins metabolising psilocybin.</span>
           </div>
-          <div class="timeline-phase">
-            <span class="tl-title">Come-up</span>
-            <span class="tl-time">1 – 2 hrs</span>
-            <span class="tl-desc">Intensity builds</span>
+          <div class="tl-phase">
+            <span class="tl-icon">🌀</span>
+            <div class="tl-meta">
+              <span class="tl-name">Come-up</span>
+              <span class="tl-dur">1 – 2 hrs</span>
+            </div>
+            <span class="tl-note">Rapid intensification — visuals, emotional amplification, altered sense of time. Can feel overwhelming. Breathe, don't resist.</span>
           </div>
-          <div class="timeline-phase timeline-phase--peak">
-            <span class="tl-title">Peak</span>
-            <span class="tl-time">2 – 4 hrs</span>
-            <span class="tl-desc">Strongest effects</span>
+          <div class="tl-phase tl-phase--peak">
+            <span class="tl-icon">✨</span>
+            <div class="tl-meta">
+              <span class="tl-name">Peak</span>
+              <span class="tl-dur">2 – 4 hrs</span>
+            </div>
+            <span class="tl-note">Full effect. Strongest visuals, introspection, ego dissolution possible at higher doses. Set and setting matter most here.</span>
           </div>
-          <div class="timeline-phase">
-            <span class="tl-title">Comedown</span>
-            <span class="tl-time">1 – 2 hrs</span>
-            <span class="tl-desc">Gradual return</span>
+          <div class="tl-phase">
+            <span class="tl-icon">🌊</span>
+            <div class="tl-meta">
+              <span class="tl-name">Comedown</span>
+              <span class="tl-dur">1 – 2 hrs</span>
+            </div>
+            <span class="tl-note">Gradual softening. Clarity returns slowly. Fatigue common. Light snack, water, calm environment — no major decisions.</span>
           </div>
-          <div class="timeline-phase">
-            <span class="tl-title">Afterglow</span>
-            <span class="tl-time">1 – 3 days</span>
-            <span class="tl-desc">Lifted mood, clarity</span>
+          <div class="tl-phase tl-phase--afterglow">
+            <span class="tl-icon">🌤</span>
+            <div class="tl-meta">
+              <span class="tl-name">Afterglow</span>
+              <span class="tl-dur">1 – 3 days</span>
+            </div>
+            <span class="tl-note">Elevated mood, open-mindedness, and increased connectedness. Integration window — journalling and reflection are most valuable here.</span>
           </div>
         </div>
-        <p class="tl-footnote">Duration varies by dose, metabolism, and setting</p>
+
+        <p class="tl-footnote">Total experience ~4–8 hrs. Duration scales with dose, metabolism, and individual chemistry. Heroic doses can extend the peak significantly.</p>
       </div>
       <div class="modal-buttons">
         <button class="btn-back" onclick="closeModal('timeline-modal')" aria-label="Close">✕</button>
@@ -1136,7 +1157,7 @@ People microdose for different reasons — focus and creative work, mood stabili
     </div>
   </div>
 
-  <!-- Disclaimer Popup -->
+    <!-- Disclaimer Popup -->
   <div id="disclaimer-popup" class="modal" role="dialog" aria-modal="true" aria-labelledby="disclaimer-title">
     <div class="modal-content">
       <div class="modal-header"><div class="modal-header-badge"><span class="modal-title-icon">⚠️</span><h2 class="modal-title">Harm Reduction</h2></div></div>
@@ -1153,8 +1174,8 @@ People microdose for different reasons — focus and creative work, mood stabili
         <div class="disc-divider"></div>
         <p class="disc-safetylink"><a onclick="closeAllModals();var c=document.getElementById('cat-safety');if(c){document.querySelector('.seo-section').setAttribute('open','');c.setAttribute('open','');setTimeout(function(){c.scrollIntoView({behavior:'smooth',block:'start'})},80)}" class="disc-link">View harm-reduction &amp; safety guide →</a></p>
       </div>
-      <div style="text-align:center;padding:12px 16px 16px;border-top:1px solid rgba(255,255,255,0.08)">
-        <p id="countdown-text" style="font-size:0.875rem;color:#666;margin:0 0 10px;min-height:1.2em"></p>
+      <div style="text-align:center;padding:14px 16px 16px;border-top:1px solid rgba(255,255,255,0.07)">
+        <p id="countdown-text" style="font-size:0.75rem;color:rgba(255,255,255,0.25);margin:0 0 10px;min-height:1.1em;letter-spacing:0.04em"></p>
         <button id="close-disclaimer" class="btn-done" style="display:none">I understand</button>
       </div>
     </div>
@@ -1713,9 +1734,9 @@ function _trapFocus(modal){var sel='a[href],button:not([disabled]),input:not([di
 </script>
 
 
-<footer class="site-footer" style="text-align:center;padding:8px 0 7px;font-size:0.75rem;color:#555;letter-spacing:0.04em">
-  © 2026 Shroomulator — All rights reserved. Non-commercial use only.<br>
-  <span style="color:#444;font-size:0.68rem">Last updated April 2026</span>
+<footer class="site-footer" style="text-align:center;padding:8px 0 7px;font-size:0.75rem;color:#555;letter-spacing:0.02em">
+  <span style="white-space:nowrap">© 2026 Shroomulator — All rights reserved. Non-commercial use only.</span><br>
+  <span style="color:#555;font-size:0.68rem">Last updated April 2026</span>
 </footer>
 
   <script>
