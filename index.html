@@ -1420,24 +1420,12 @@ function _saveNoNote(btn){
 }
 function _saveWithNote(){
   if(!_pendingSaveData)return;
-  // Open note modal in "save mode" — with a Save button
-  _noteModalTs='__pending__';
-  var m=document.getElementById('note-modal');
-  var ta=document.getElementById('note-modal-ta');
-  var doneBtn=document.querySelector('.note-modal-done');
-  if(ta)ta.value='';
-  if(doneBtn){doneBtn.textContent='Save result';doneBtn.onclick=function(){_commitSaveWithNote();};}
-  if(m)openModal('note-modal');
+  _openNoteModal(null,true);
 }
-function _commitSaveWithNote(){
+function _commitSaveWithNote(note){
   if(!_pendingSaveData)return;
   var d=_pendingSaveData;_pendingSaveData=null;
-  var ta=document.getElementById('note-modal-ta');
-  var note=ta?ta.value.trim():'';
-  _doSave(d,note);
-  _noteModalTs=null;
-  var doneBtn=document.querySelector('.note-modal-done');
-  if(doneBtn){doneBtn.textContent='Done';doneBtn.onclick=function(){_closeNoteModal(true);};}
+  _doSave(d,note||'');
   closeModal('note-modal');
   openModal('variance-modal');
   var row=document.getElementById('vr-save-row');
@@ -1451,25 +1439,38 @@ function _doSave(d,note){
 function _loadNotes(){try{return JSON.parse(localStorage.getItem(NOTES_KEY)||'{}');}catch(e){return{};}}
 function _saveNote(ts,text){try{var n=_loadNotes();if(text.trim()){n[ts]=text.trim();}else{delete n[ts];}localStorage.setItem(NOTES_KEY,JSON.stringify(n));}catch(e){}}
 var _noteModalTs=null;
-function _openNoteModal(ts){
+var _noteModalSaveMode=false;
+function _openNoteModal(ts,saveMode){
   _noteModalTs=ts;
+  _noteModalSaveMode=!!saveMode;
   var m=document.getElementById('note-modal');
   var ta=document.getElementById('note-modal-ta');
   if(!m||!ta)return;
-  var notes=_loadNotes();
-  ta.value=notes[ts]||'';
+  if(saveMode){
+    ta.value='';
+  } else {
+    var notes=_loadNotes();
+    ta.value=notes[ts]||'';
+  }
+  var doneBtn=document.querySelector('.note-modal-done');
+  if(doneBtn)doneBtn.textContent=saveMode?'Save result':'Done';
   _saveFocus();
   m.style.display='flex';
   document.body.style.overflow='hidden';
-  setTimeout(function(){
-    ta.focus();
-    ta.setSelectionRange(ta.value.length,ta.value.length);
-  },60);
+  setTimeout(function(){ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length);},60);
 }
 function _closeNoteModal(save){
   var m=document.getElementById('note-modal');
   var ta=document.getElementById('note-modal-ta');
   if(!m)return;
+  if(save&&_noteModalSaveMode){
+    _commitSaveWithNote(ta?ta.value.trim():'');
+    _noteModalSaveMode=false;_noteModalTs=null;
+    return;
+  }
+  if(!save&&_noteModalSaveMode){
+    _pendingSaveData=null;_noteModalSaveMode=false;
+  }
   if(save&&_noteModalTs!==null&&ta){
     _saveNote(_noteModalTs,ta.value);
     var btn=document.getElementById('snb-'+_noteModalTs);
@@ -1754,7 +1755,7 @@ function _vrBuildWarnings(effDose,wlpLine,isManual){
   } else {
     var highDose=effDose>=6.0;
     var companion=effDose>=companionThreshold;
-    var highPot=(STATE.strain&&STATE.strain.potency>=2.5);
+    var highPot=(STATE.strain&&STATE.strain.potency>=2);
     if(highDose)lines.push('<p class="vr-warn-yellow">\u26a0\ufe0f High dose \u2014 extreme intensity. Use caution.</p>');
     if(companion)lines.push('<p class="vr-warn-yellow">\u26a0\ufe0f Sober companion strongly recommended. <span style="white-space:nowrap"><a onclick="closeAllModals();openFaqFromStrain(event,\u0027bad-trip\u0027)" class="vr-link">Trip sitting guide \u203a</a></span></p>');
     if(highPot)lines.push('<p class="vr-warn-yellow">\u26a0\ufe0f Very potent strain \u2014 <a onclick="closeAllModals();openFaqFromStrain(event,\u0027high-potency\u0027)" class="vr-link">extra caution advised</a>.</p>');
@@ -1829,7 +1830,7 @@ function _updateBodyScroll(){
     document.body.style.width="";
     window.scrollTo(0,_bodyScrollY);
   }
-}function openModal(id){_saveFocus();var _strainOpen=document.getElementById("strain-modal").style.display==="flex";document.querySelectorAll(".modal").forEach(function(e){e.style.display="none"});if(_strainOpen){try{clearStrainUrl();}catch(x){}}var m=document.getElementById(id);if(!m)return;m.style.display="flex";_updateBodyScroll();setTimeout(()=>_trapFocus(m),60);}function closeModal(e){document.getElementById(e).style.display="none";if(e==="strain-modal"){try{clearStrainUrl();}catch(x){}}_restoreFocus();_updateBodyScroll();}function closeAllModals(){var _strainOpen=document.getElementById("strain-modal").style.display==="flex";document.querySelectorAll(".modal").forEach(function(e){e.style.display="none"});if(_strainOpen){try{clearStrainUrl();}catch(x){}}_restoreFocus();_updateBodyScroll();}
+}function openModal(id){_saveFocus();var _strainOpen=document.getElementById("strain-modal").style.display==="flex";document.querySelectorAll(".modal").forEach(function(e){e.style.display="none"});if(_strainOpen){try{clearStrainUrl();}catch(x){}}var m=document.getElementById(id);if(!m)return;m.style.display="flex";_updateBodyScroll();setTimeout(()=>_trapFocus(m),60);}function closeModal(e){document.getElementById(e).style.display="none";if(e==="variance-modal"){_vrWlpLine=false;_pendingSaveData=null;}if(e==="strain-modal"){try{clearStrainUrl();}catch(x){}}_restoreFocus();_updateBodyScroll();}function closeAllModals(){var _strainOpen=document.getElementById("strain-modal").style.display==="flex";document.querySelectorAll(".modal").forEach(function(e){e.style.display="none"});if(_strainOpen){try{clearStrainUrl();}catch(x){}}_restoreFocus();_updateBodyScroll();}
 var _prevFocus=null;
 var _tripReturnTarget=null;
 function _saveFocus(){_prevFocus=document.activeElement}
