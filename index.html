@@ -155,15 +155,16 @@ input[type="number"]{-moz-appearance:textfield}
 @keyframes modalIn{from{opacity:0;transform:scale(0.98)}to{opacity:1;transform:scale(1.0)}}
 
 /* ── Modals ───────────────────────────────────────── */
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.82);justify-content:center;align-items:center;z-index:1000;overscroll-behavior:contain}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.82);justify-content:center;align-items:center;z-index:1000;overscroll-behavior:contain;touch-action:none}
 .modal-content{background:#111115;padding:0;border-radius:18px;width:auto;min-width:min(300px,88vw);max-width:min(520px,92vw);text-align:center;color:var(--text-1);box-sizing:border-box;overflow:hidden;box-shadow:0 0 0 1.5px rgba(255,255,255,0.13),0 24px 64px rgba(0,0,0,0.9),0 4px 16px rgba(0,0,0,0.6);animation:modalIn 200ms var(--ease) both}
-#trip-info-modal .modal-content{overflow-y:auto;max-height:75vh}
+#trip-info-modal .modal-content{overflow-y:auto;max-height:72vh;max-height:72dvh}
+#timeline-modal .modal-content{overflow-y:auto;max-height:72vh;max-height:72dvh}
 .modal-header{width:100%;padding:8px 10px 0;text-align:center;box-sizing:border-box}
 .modal-header-badge{display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:10px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;box-sizing:border-box;box-shadow:0 1px 0 rgba(255,255,255,0.06) inset,0 2px 8px rgba(0,0,0,0.4)}
 .modal-title,.trip-modal-title{color:#f0eaff;font-size:0.95rem;font-weight:700;letter-spacing:0.06em;margin:0;text-align:center;text-decoration:none;text-shadow:0 0 20px rgba(195,154,216,0.3)}
 .modal-title-icon{opacity:0.85;flex-shrink:0;filter:drop-shadow(0 0 4px rgba(155,89,182,0.5))}
 .modal-close{display:none}
-.modal-body{padding:16px 18px 16px;overflow-y:auto;max-height:calc(92vh - 80px)}
+.modal-body{padding:16px 18px 16px;overflow-y:auto;max-height:calc(92vh - 80px);max-height:calc(92dvh - 80px);touch-action:pan-y;overscroll-behavior:contain}
 .modal-body::-webkit-scrollbar{width:4px}
 .modal-body::-webkit-scrollbar-track{background:transparent}
 .modal-body::-webkit-scrollbar-thumb{background:var(--purple);border-radius:2px}
@@ -203,8 +204,8 @@ input[type="number"]{-moz-appearance:textfield}
 .result-header{font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--purple-l);text-align:center;padding-bottom:5px;margin-bottom:6px;border-bottom:1px solid rgba(195,154,216,0.25);white-space:nowrap}
 .result-row{display:flex;align-items:center;justify-content:center;position:relative}
 .result-main{display:flex;flex-direction:column;align-items:center;width:100%}
-.result-value-line{display:flex;align-items:center;justify-content:center;width:100%;position:relative;padding-right:32px}
-.result-value-line>.info-btn{position:absolute;right:0;top:50%;transform:translateY(-50%)}
+.result-value-line{display:flex;align-items:center;justify-content:center;width:100%;position:relative;padding-right:28px;box-sizing:border-box}
+.result-value-line>.info-btn{position:absolute;right:4px;top:50%;transform:translateY(-50%)}
 .result-value{font-size:1.8rem;font-weight:700;color:var(--text-1);line-height:1.1}
 .result-value__unit{font-size:0.65em;font-weight:700;color:var(--text-1);margin-left:3px}
 .result-value__range{font-size:0.55em;font-weight:400;color:var(--text-2);margin-left:8px}
@@ -752,7 +753,27 @@ body[style*="overflow: hidden"]>footer{visibility:hidden}
       .adv-item--seg:not(.active) .adv-seg-opt:first-child{background:rgba(155,89,182,0.28);color:#d4a8f0}
       .adv-item--seg.active .adv-seg-opt:last-child{background:rgba(155,89,182,0.38);color:#e8c8ff}
       .adv-lemon-help{display:none}
-    </style>
+    
+@media(max-width:480px) and (max-height:780px){
+  #trip-info-modal .modal-content,
+  #timeline-modal .modal-content{max-height:calc(100dvh - 16px);max-height:calc(100vh - 16px)}
+  #trip-info-modal .modal-header,
+  #timeline-modal .modal-header{padding:5px 8px 0}
+  #trip-info-modal .modal-header-badge,
+  #timeline-modal .modal-header-badge{padding:6px 12px}
+  #trip-info-modal .modal-body,
+  #timeline-modal .modal-body{padding:4px 10px 6px;max-height:none}
+  #trip-info-modal .modal-buttons,
+  #timeline-modal .modal-buttons{padding:6px 14px 8px}
+  .trip-card{padding:4px 7px;margin-bottom:2px}
+  .trip-card-header{gap:5px;margin-bottom:0}
+  .trip-desc{font-size:0.72rem;line-height:1.2;margin-left:18px}
+  .tl-phase{padding:6px 10px;gap:7px}
+  .tl-note{font-size:0.68rem;line-height:1.35}
+  .tl-dur{font-size:0.75rem}
+  .tl-footnote{margin:8px 0 0;font-size:0.68rem}
+}
+</style>
   </div>
 
   <svg style="display:none" aria-hidden="true">
@@ -1374,29 +1395,59 @@ function _getActiveDoseG(){
 }
 function buildShareUrl(){try{var u=new URL(window.location.href);u.searchParams.delete('faq');if(STATE.strain)u.searchParams.set('strain',strainToSlug(STATE.strain.name));if(STATE.tripLevel)u.searchParams.set('level',STATE.tripLevel);if(STATE.weight)u.searchParams.set('weight',STATE.weightRaw||String(STATE.weight));if(STATE.weightUnit)u.searchParams.set('unit',STATE.weightUnit);u.searchParams.set('lemon',STATE.lemonTek?'1':'0');if(STATE.form&&STATE.form!=='dry')u.searchParams.set('form',STATE.form);if(STATE.unitMode&&STATE.unitMode!=='g')u.searchParams.set('display',STATE.unitMode);var _activeG=_getActiveDoseG();if(_activeG>0&&Math.abs(_activeG-_lastDose)>0.001)u.searchParams.set('dose',parseFloat(_activeG.toFixed(4)));return u.toString();}catch(x){return window.location.href;}}
 function copyShareLink(btn){try{var url=buildShareUrl();var _fb=function(){if(btn){var _t=btn.textContent;btn.textContent='✓ Copied!';setTimeout(function(){btn.textContent=_t;},1800);}};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(_fb).catch(function(){var ta=document.createElement('textarea');ta.value=url;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(x){}document.body.removeChild(ta);_fb();});}else{var ta=document.createElement('textarea');ta.value=url;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(x){}document.body.removeChild(ta);_fb();}}catch(x){}}
+var _pendingSaveData=null;
 function saveCurrentResult(btn){
   if(!STATE.strain||!STATE.tripLevel||!_lastDose)return;
-  var _sl=document.getElementById('vr-slider');
-  var _saveDose=_lastDose;
+  var _isMgM=STATE.unitMode==='mg';
+  var _isFreshM=STATE.form==='fresh';
   var _numSpan=document.getElementById('vr-dose-num');
-  if(_numSpan){
-    var _dispVal=parseFloat(_numSpan.textContent);
-    if(!isNaN(_dispVal)&&_dispVal>0){
-      var _isMgM=STATE.unitMode==='mg';
-      var _isFreshM=STATE.form==='fresh';
-      var _grams=_dispVal;
-      if(_isMgM)_grams=_dispVal/1000;
-      if(_isFreshM)_grams=_grams/10;
-      if(_grams>0)_saveDose=_grams;
-    }
-  }
-  var item={timestamp:Date.now(),weight:STATE.weight,unit:STATE.weightUnit,strain:STATE.strain.name,potency:STATE.strain.potency,tripLevel:STATE.tripLevel,dose:_saveDose,rangeLow:_lastRangeLow,rangeHigh:_lastRangeHigh,lemonTek:STATE.lemonTek,form:STATE.form,unitMode:STATE.unitMode};
-  var arr=[];try{arr=JSON.parse(localStorage.getItem(SAVED_KEY)||"[]");}catch(e){}
-  arr.unshift(item);arr=arr.slice(0,99);
-  try{localStorage.setItem(SAVED_KEY,JSON.stringify(arr));}catch(e){}
-  if(btn){var _t=btn.textContent;btn.textContent='✓ Saved!';setTimeout(function(){btn.textContent=_t;},1800);}
+  var _saveDose=_lastDose;
+  if(_numSpan){var _dispVal=parseFloat(_numSpan.textContent);if(!isNaN(_dispVal)&&_dispVal>0){var _grams=_isMgM?_dispVal/1000:_dispVal;if(_isFreshM)_grams/=10;if(_grams>0)_saveDose=_grams;}}
+  _pendingSaveData={dose:_saveDose,rangeLow:_lastRangeLow,rangeHigh:_lastRangeHigh};
+  // Show X / ✓ prompt inline
+  var row=document.getElementById('vr-save-row');
+  if(row){row.innerHTML='<div class="vr-actions"><span style="font-size:0.78rem;color:var(--text-m);align-self:center;margin-right:4px">Add note?</span><button onclick="_saveNoNote(this)" class="vr-save-btn" title="Save without note" style="font-size:1.1rem;padding:6px 14px">✕</button><button onclick="_saveWithNote()" class="vr-save-btn" title="Add a note" style="font-size:1.1rem;padding:6px 14px;color:#c39ad8">✓</button></div>';}
 }
-var NOTES_KEY='savedNotes';
+function _saveNoNote(btn){
+  if(!_pendingSaveData)return;
+  var d=_pendingSaveData;_pendingSaveData=null;
+  _doSave(d,null);
+  var row=document.getElementById('vr-save-row');
+  if(row){
+    row.innerHTML='<div class="vr-actions"><span style="font-size:0.78rem;color:#9b59b6;align-self:center">✓ Saved!</span></div>';
+    setTimeout(function(){if(row)row.innerHTML='<div class="vr-actions"><button onclick="saveCurrentResult(this)" class="vr-save-btn">💾 Save</button><button onclick="copyShareLink(this)" class="vr-save-btn">🔗 Copy link</button></div>';},1600);
+  }
+}
+function _saveWithNote(){
+  if(!_pendingSaveData)return;
+  // Open note modal in "save mode" — with a Save button
+  _noteModalTs='__pending__';
+  var m=document.getElementById('note-modal');
+  var ta=document.getElementById('note-modal-ta');
+  var doneBtn=document.querySelector('.note-modal-done');
+  if(ta)ta.value='';
+  if(doneBtn){doneBtn.textContent='Save result';doneBtn.onclick=function(){_commitSaveWithNote();};}
+  if(m)openModal('note-modal');
+}
+function _commitSaveWithNote(){
+  if(!_pendingSaveData)return;
+  var d=_pendingSaveData;_pendingSaveData=null;
+  var ta=document.getElementById('note-modal-ta');
+  var note=ta?ta.value.trim():'';
+  _doSave(d,note);
+  _noteModalTs=null;
+  var doneBtn=document.querySelector('.note-modal-done');
+  if(doneBtn){doneBtn.textContent='Done';doneBtn.onclick=function(){_closeNoteModal(true);};}
+  closeModal('note-modal');
+  openModal('variance-modal');
+  var row=document.getElementById('vr-save-row');
+  if(row){row.innerHTML='<div class="vr-actions"><span style="font-size:0.78rem;color:#9b59b6;align-self:center">✓ Saved!</span></div>';setTimeout(function(){if(row)row.innerHTML='<div class="vr-actions"><button onclick="saveCurrentResult(this)" class="vr-save-btn">💾 Save</button><button onclick="copyShareLink(this)" class="vr-save-btn">🔗 Copy link</button></div>';},1600);}
+}
+function _doSave(d,note){
+  var item={timestamp:Date.now(),weight:STATE.weight,unit:STATE.weightUnit,strain:STATE.strain.name,potency:STATE.strain.potency,tripLevel:STATE.tripLevel,dose:d.dose,rangeLow:d.rangeLow,rangeHigh:d.rangeHigh,lemonTek:STATE.lemonTek,form:STATE.form,unitMode:STATE.unitMode};
+  if(note)item.note=note;
+  try{var arr=JSON.parse(Store.get(SAVED_KEY)||'[]');arr.unshift(item);if(arr.length>99)arr=arr.slice(0,99);Store.set(SAVED_KEY,JSON.stringify(arr));}catch(e){}
+}
 function _loadNotes(){try{return JSON.parse(localStorage.getItem(NOTES_KEY)||'{}');}catch(e){return{};}}
 function _saveNote(ts,text){try{var n=_loadNotes();if(text.trim()){n[ts]=text.trim();}else{delete n[ts];}localStorage.setItem(NOTES_KEY,JSON.stringify(n));}catch(e){}}
 var _noteModalTs=null;
@@ -1692,29 +1743,41 @@ function _vrUpdateRangeMarker(slVal){
   }
 }
 
-function openFaqFromStrain(e,faqId){e.preventDefault();closeAllModals();var allSections=document.querySelectorAll(".seo-section");allSections.forEach(function(s){s.setAttribute("open","")});var faqEl=document.getElementById("faq-"+faqId);if(faqEl){var cat=faqEl.closest(".faq-cat");if(cat)cat.setAttribute("open","");faqEl.setAttribute("open","");setTimeout(function(){faqEl.scrollIntoView({behavior:"smooth",block:"start"})},180);}}function _vrConvertM(v,isMgM,isFreshM){var out=v;if(isFreshM)out=out*10;if(isMgM){out=Math.round(out*1000/10)*10;}else{out=parseFloat(out.toFixed(2));}return out.toString();}function _doseToLevel(dryG){var pot=(STATE.strain&&STATE.strain.potency)?STATE.strain.potency:1;var lf=STATE.lemonTek?0.88:1;var eq=dryG*pot/lf;if(eq<0.1)return 1;if(eq<=0.50)return 2;if(eq<=1.00)return 3;if(eq<=1.80)return 4;if(eq<=3.50)return 5;return 6;}function _vrUpdateWarningsManual(doseG){
-  var el=document.getElementById("vr-warnings");if(!el)return;
+function openFaqFromStrain(e,faqId){e.preventDefault();closeAllModals();var allSections=document.querySelectorAll(".seo-section");allSections.forEach(function(s){s.setAttribute("open","")});var faqEl=document.getElementById("faq-"+faqId);if(faqEl){var cat=faqEl.closest(".faq-cat");if(cat)cat.setAttribute("open","");faqEl.setAttribute("open","");setTimeout(function(){faqEl.scrollIntoView({behavior:"smooth",block:"start"})},180);}}function _vrConvertM(v,isMgM,isFreshM){var out=v;if(isFreshM)out=out*10;if(isMgM){out=Math.round(out*1000/10)*10;}else{out=parseFloat(out.toFixed(2));}return out.toString();}function _doseToLevel(dryG){var pot=(STATE.strain&&STATE.strain.potency)?STATE.strain.potency:1;var lf=STATE.lemonTek?0.88:1;var eq=dryG*pot/lf;if(eq<0.1)return 1;if(eq<=0.50)return 2;if(eq<=1.00)return 3;if(eq<=1.80)return 4;if(eq<=3.50)return 5;return 6;}var _vrWlpLine=false;
+function _vrBuildWarnings(effDose,wlpLine,isManual){
   var _pot=(STATE.strain&&STATE.strain.potency)?STATE.strain.potency:1;
   var _lf=STATE.lemonTek?0.88:1;
   var lines=[];
-  if(doseG>20){
+  var companionThreshold=_sliderToGrams(70)/_pot*_lf;
+  if(isManual&&effDose>20){
     lines.push('<p class="vr-warn-yellow">\u26a0 Custom dose \u2014 outside standard calculation range.</p>');
   } else {
-    var _effDose=doseG;
-    var highDose=_effDose>=6.0;
+    var highDose=effDose>=6.0;
+    var companion=effDose>=companionThreshold;
     var highPot=(STATE.strain&&STATE.strain.potency>=2.5);
-    var companion=_effDose>=(_sliderToGrams(70)/_pot*_lf);
-    var wlpLine=_vrWlpLine;
     if(highDose)lines.push('<p class="vr-warn-yellow">\u26a0\ufe0f High dose \u2014 extreme intensity. Use caution.</p>');
     if(companion)lines.push('<p class="vr-warn-yellow">\u26a0\ufe0f Sober companion strongly recommended. <span style="white-space:nowrap"><a onclick="closeAllModals();openFaqFromStrain(event,\u0027bad-trip\u0027)" class="vr-link">Trip sitting guide \u203a</a></span></p>');
     if(highPot)lines.push('<p class="vr-warn-yellow">\u26a0\ufe0f Very potent strain \u2014 <a onclick="closeAllModals();openFaqFromStrain(event,\u0027high-potency\u0027)" class="vr-link">extra caution advised</a>.</p>');
     if(wlpLine)lines.push('<p class="vr-warn-yellow">\u26a0\ufe0f Wood lover\u2019s paralysis risk \u2014 <a onclick="openFaqFromStrain(event,\u0027wood-lovers-paralysis\u0027)" class="vr-link">never use alone</a>.</p>');
-    if(_effDose>0&&_effDose<0.11)lines.push('<p class="vr-warn-info">\u2139\ufe0f Use a 0.001g precision scale \u2014 kitchen scales are not accurate enough.</p>');
-    else if(_effDose>0&&_effDose<1.0)lines.push('<p class="vr-warn-info">\u2139\ufe0f Use a 0.01g precision scale \u2014 kitchen scales are not accurate enough.</p>');
+    if(effDose>0&&effDose<0.11)lines.push('<p class="vr-warn-info">\u2139\ufe0f Use a 0.001g precision scale \u2014 kitchen scales are not accurate enough.</p>');
+    else if(effDose>0&&effDose<1.0)lines.push('<p class="vr-warn-info">\u2139\ufe0f Use a 0.01g precision scale \u2014 kitchen scales are not accurate enough.</p>');
   }
+  return lines;
+}
+function _vrUpdateWarningsManual(doseG){
+  var el=document.getElementById('vr-warnings');if(!el)return;
+  var lines=_vrBuildWarnings(doseG,_vrWlpLine,true);
   el.innerHTML=lines.length?'<div class="vr-warns">'+lines.join('')+'</div>':'';
 }
-var _vrWlpLine=false;function _vrUpdateWarnings(tl,wlpLine,slVal){var el=document.getElementById("vr-warnings");if(!el)return;var sv=typeof slVal==="number"?slVal:Math.max(0,(tl-1)*100/5);var _pot=(STATE.strain&&STATE.strain.potency)?STATE.strain.potency:1;var _lf=STATE.lemonTek?0.88:1;var _baseG=_sliderToGrams(sv);var _effDose=_baseG/_pot*_lf;var highDose=_effDose>=6.0;var companion=sv>=70;var highPot=(STATE.strain&&STATE.strain.potency>=2.5);var lines=[];if(highDose)lines.push('<p class="vr-warn-yellow">⚠️ High dose — extreme intensity. Use caution.</p>');if(companion)lines.push('<p class="vr-warn-yellow">⚠️ Sober companion strongly recommended. <span style="white-space:nowrap"><a onclick="closeAllModals();openFaqFromStrain(event,\'bad-trip\')" class="vr-link">Trip sitting guide ›</a></span></p>');if(highPot)lines.push('<p class="vr-warn-yellow">⚠️ Very potent strain — <a onclick="closeAllModals();openFaqFromStrain(event,\'high-potency\')" class="vr-link">extra caution advised</a>.</p>');if(wlpLine)lines.push('<p class="vr-warn-yellow">⚠️ Wood lover\'s paralysis risk — <a onclick="openFaqFromStrain(event,\'wood-lovers-paralysis\')" class="vr-link">never use alone</a>.</p>');if(_effDose>0&&_effDose<0.11)lines.push('<p class="vr-warn-info">ℹ️ Use a 0.001g precision scale — kitchen scales are not accurate enough.</p>');else if(_effDose>0&&_effDose<1.0)lines.push('<p class="vr-warn-info">ℹ️ Use a 0.01g precision scale — kitchen scales are not accurate enough.</p>');el.innerHTML=lines.length?'<div class="vr-warns">'+lines.join('')+'</div>':'';}function _sliderToGrams(slVal){
+function _vrUpdateWarnings(tl,wlpLine,slVal){
+  var el=document.getElementById('vr-warnings');if(!el)return;
+  var sv=typeof slVal==='number'?slVal:Math.max(0,(tl-1)*100/5);
+  var _pot=(STATE.strain&&STATE.strain.potency)?STATE.strain.potency:1;
+  var _lf=STATE.lemonTek?0.88:1;
+  var effDose=_sliderToGrams(sv)/_pot*_lf;
+  var lines=_vrBuildWarnings(effDose,wlpLine,false);
+  el.innerHTML=lines.length?'<div class="vr-warns">'+lines.join('')+'</div>':'';
+}function _sliderToGrams(slVal){
   // Pure base dry gram mapping — NO potency, NO lemon tek
   // Segments: micro 0-10, low 10-25, med 25-45, norm 45-65, high 65-85, heroic 85-95, spike 95-100
   var s=slVal;
@@ -1750,7 +1813,23 @@ function _vrSliderUpdate(slVal){
   if(levelEl){levelEl.textContent=tripNames[segLvl]||tripNames[STATE.tripLevel];}
   // Warnings only: may use _doseToLevel (text, not visual)
   _vrUpdateWarnings(_doseToLevel(baseG),_vrWlpLine,slVal);
-}function togglePmTip(skipOpen){if(!STATE.strain||!STATE.tripLevel)return;var _elLevel=document.getElementById("vr-level-row");var _elDose=document.getElementById("vr-dose-main");var _elRange=document.getElementById("vr-range-row");var _elSave=document.getElementById("vr-save-row");var _elDisc=document.getElementById("vr-disclaimer");var _elTitle=document.getElementById("variance-title");if(!_elLevel||!_elDose)return;_vrWlpLine=WLP_SPECIES.some(function(w){return(STATE.strain.name+STATE.strain.origin).toLowerCase().includes(w);});var _tl=parseInt(STATE.tripLevel)||0;var _isMgM=STATE.unitMode==="mg";var _isFreshM=STATE.form==="fresh";var _uLabel=_isMgM?"mg":"g";if(_elTitle){_elTitle.innerHTML='<span class="hallucinate">'+(STATE.strain?STATE.strain.name:"Dose Estimate")+"</span>";}_elLevel.innerHTML='<span class="vr-level-badge" onclick="_tripReturnTarget=true;showTripInfo()" title="Change trip level">'+(tripNames[_tl]||'Level '+_tl)+'</span>';var _slMin=0;var _slMax=100;var _initPot=(STATE.strain&&STATE.strain.potency)?STATE.strain.potency:1;var _initLf=STATE.lemonTek?0.88:1;var _initBaseG=_lastDose*_initPot/_initLf;var _lvlSliderMap={1:8,2:20,3:35,4:55,5:75,6:90};var _slVal=(_lastDose>0&&_initBaseG>0)?Math.round(Math.max(0,Math.min(100,_getDoseMapPct(_initBaseG)))):(_lvlSliderMap[_tl]||50);var _fi=_isFreshM?"💧":"🌵";var _icons='<span class="vr-form-icon vr-mod--link" onclick="closeAllModals();openFaqFromStrain(event,\'storage\')">'+ _fi+"</span>"+(STATE.lemonTek?'<span class="vr-form-icon vr-mod--link" onclick="closeAllModals();openFaqFromStrain(event,\'preparation-methods\')">🍋</span>':"");_elDose.innerHTML='<div class="vr-main-dose" id="vr-main-dose-val"><span class="vr-dose-editable" id="vr-dose-num" title="Tap to edit" onclick="_vrStartEdit()">'+_vrConvertM(_lastDose,_isMgM,_isFreshM)+'</span><span class="vr-main-unit">'+_uLabel+"</span></div>"+"<div class=\"vr-form-icons\">"+ _icons+"</div>";if(_elSave){_elSave.innerHTML="<div class=\"vr-actions\"><button onclick=\"saveCurrentResult(this)\" class=\"vr-save-btn\">💾 Save</button><button onclick=\"copyShareLink(this)\" class=\"vr-save-btn\">🔗 Copy link</button></div>";}var _initLvl=Math.min(5,Math.floor(_slVal*6/100))+1;if(_elRange){_elRange.innerHTML='<div class="vr-map-container"><div class="vr-slider-wrap"><input type="range" id="vr-slider" class="vr-slider" min="'+_slMin+'" max="'+_slMax+'" step="1" value="'+_slVal+'"></div><div class="vr-map-bar"><div class="vr-map-seg'+(_initLvl===1?' active':'')+'" id="vr-seg-1">micro</div><div class="vr-map-seg'+(_initLvl===2?' active':'')+'" id="vr-seg-2">low</div><div class="vr-map-seg'+(_initLvl===3?' active':'')+'" id="vr-seg-3">medium</div><div class="vr-map-seg'+(_initLvl===4?' active':'')+'" id="vr-seg-4">normal</div><div class="vr-map-seg'+(_initLvl===5?' active':'')+'" id="vr-seg-5">high</div><div class="vr-map-seg'+(_initLvl===6?' active':'')+'" id="vr-seg-6">heroic</div></div></div>';var _sl=document.getElementById('vr-slider');if(_sl){_sl.addEventListener('input',function(){_manualDoseG=0;_vrSliderUpdate(parseInt(this.value));});_vrSliderUpdate(_slVal);}}if(_elDisc){_elDisc.innerHTML='<p class="vr-disc" style="margin:6px 0 0">Not a prescription or a substitute for professional guidance.</p>';}_vrUpdateWarnings(_tl,_vrWlpLine,_slVal);if(!skipOpen)openModal("variance-modal");}function strainToSlug(n){return n.toLowerCase().replace(/[()\[\]]/g,"").replace(/\s+/g,"-").replace(/[^a-z0-9\-+]/g,"").replace(/-+/g,"-").replace(/^-|-$/g,"")}function pushStrainUrl(s){if(location.protocol==="about:")return;try{var u=new URL(window.location.href);u.searchParams.set("strain",strainToSlug(s.name));history.replaceState(null,"",u.toString());}catch(e){}}function clearStrainUrl(){if(location.protocol==="about:")return;try{var u=new URL(window.location.href);if(u.searchParams.has("strain")){u.searchParams.delete("strain");history.replaceState(null,"",u.toString()||window.location.pathname);}}catch(e){}}function _updateBodyScroll(){var open=Array.from(document.querySelectorAll(".modal")).some(function(m){return m.style.display==="flex";});document.body.style.overflow=open?"hidden":"";}function openModal(id){_saveFocus();var _strainOpen=document.getElementById("strain-modal").style.display==="flex";document.querySelectorAll(".modal").forEach(function(e){e.style.display="none"});if(_strainOpen){try{clearStrainUrl();}catch(x){}}var m=document.getElementById(id);if(!m)return;m.style.display="flex";_updateBodyScroll();setTimeout(()=>_trapFocus(m),60);}function closeModal(e){document.getElementById(e).style.display="none";if(e==="strain-modal"){try{clearStrainUrl();}catch(x){}}_restoreFocus();_updateBodyScroll();}function closeAllModals(){var _strainOpen=document.getElementById("strain-modal").style.display==="flex";document.querySelectorAll(".modal").forEach(function(e){e.style.display="none"});if(_strainOpen){try{clearStrainUrl();}catch(x){}}_restoreFocus();_updateBodyScroll();}
+}function togglePmTip(skipOpen){if(!STATE.strain||!STATE.tripLevel)return;var _elLevel=document.getElementById("vr-level-row");var _elDose=document.getElementById("vr-dose-main");var _elRange=document.getElementById("vr-range-row");var _elSave=document.getElementById("vr-save-row");var _elDisc=document.getElementById("vr-disclaimer");var _elTitle=document.getElementById("variance-title");if(!_elLevel||!_elDose)return;_vrWlpLine=WLP_SPECIES.some(function(w){return(STATE.strain.name+STATE.strain.origin).toLowerCase().includes(w);});var _tl=parseInt(STATE.tripLevel)||0;var _isMgM=STATE.unitMode==="mg";var _isFreshM=STATE.form==="fresh";var _uLabel=_isMgM?"mg":"g";if(_elTitle){_elTitle.innerHTML='<span class="hallucinate">'+(STATE.strain?STATE.strain.name:"Dose Estimate")+"</span>";}_elLevel.innerHTML='<span class="vr-level-badge" onclick="_tripReturnTarget=true;showTripInfo()" title="Change trip level">'+(tripNames[_tl]||'Level '+_tl)+'</span>';var _initPot=(STATE.strain&&STATE.strain.potency)?STATE.strain.potency:1;var _initLf=STATE.lemonTek?0.88:1;var _initBaseG=_lastDose*_initPot/_initLf;var _lvlSliderMap={1:8,2:20,3:35,4:55,5:75,6:90};var _slVal=(_lastDose>0&&_initBaseG>0)?Math.round(Math.max(0,Math.min(100,_getDoseMapPct(_initBaseG)))):(_lvlSliderMap[_tl]||50);var _fi=_isFreshM?"💧":"🌵";var _icons='<span class="vr-form-icon vr-mod--link" onclick="closeAllModals();openFaqFromStrain(event,\'storage\')">'+ _fi+"</span>"+(STATE.lemonTek?'<span class="vr-form-icon vr-mod--link" onclick="closeAllModals();openFaqFromStrain(event,\'preparation-methods\')">🍋</span>':"");_elDose.innerHTML='<div class="vr-main-dose" id="vr-main-dose-val"><span class="vr-dose-editable" id="vr-dose-num" title="Tap to edit" onclick="_vrStartEdit()">'+_vrConvertM(_lastDose,_isMgM,_isFreshM)+'</span><span class="vr-main-unit">'+_uLabel+"</span></div>"+"<div class=\"vr-form-icons\">"+ _icons+"</div>";if(_elSave){_elSave.innerHTML="<div class=\"vr-actions\"><button onclick=\"saveCurrentResult(this)\" class=\"vr-save-btn\">💾 Save</button><button onclick=\"copyShareLink(this)\" class=\"vr-save-btn\">🔗 Copy link</button></div>";}var _initLvl=Math.min(5,Math.floor(_slVal*6/100))+1;if(_elRange){_elRange.innerHTML='<div class="vr-map-container"><div class="vr-slider-wrap"><input type="range" id="vr-slider"  class="vr-slider" min="0" max="100" step="1" valu value="'+_slVal+'"></div><div class="vr-map-bar"><div class="vr-map-seg'+(_initLvl===1?' active':'')+'" id="vr-seg-1">micro</div><div class="vr-map-seg'+(_initLvl===2?' active':'')+'" id="vr-seg-2">low</div><div class="vr-map-seg'+(_initLvl===3?' active':'')+'" id="vr-seg-3">medium</div><div class="vr-map-seg'+(_initLvl===4?' active':'')+'" id="vr-seg-4">normal</div><div class="vr-map-seg'+(_initLvl===5?' active':'')+'" id="vr-seg-5">high</div><div class="vr-map-seg'+(_initLvl===6?' active':'')+'" id="vr-seg-6">heroic</div></div></div>';var _sl=document.getElementById('vr-slider');if(_sl){_sl.addEventListener('input',function(){_manualDoseG=0;_vrSliderUpdate(parseInt(this.value));});_vrSliderUpdate(_slVal);}}if(_elDisc){_elDisc.innerHTML='<p class="vr-disc" style="margin:6px 0 0">Not a prescription or a substitute for professional guidance.</p>';}_vrUpdateWarnings(_tl,_vrWlpLine,_slVal);if(!skipOpen)openModal("variance-modal");}function strainToSlug(n){return n.toLowerCase().replace(/[()\[\]]/g,"").replace(/\s+/g,"-").replace(/[^a-z0-9\-+]/g,"").replace(/-+/g,"-").replace(/^-|-$/g,"")}function pushStrainUrl(s){if(location.protocol==="about:")return;try{var u=new URL(window.location.href);u.searchParams.set("strain",strainToSlug(s.name));history.replaceState(null,"",u.toString());}catch(e){}}function clearStrainUrl(){if(location.protocol==="about:")return;try{var u=new URL(window.location.href);if(u.searchParams.has("strain")){u.searchParams.delete("strain");history.replaceState(null,"",u.toString()||window.location.pathname);}}catch(e){}}var _bodyScrollY=0;
+function _updateBodyScroll(){
+  var open=Array.from(document.querySelectorAll(".modal")).some(function(m){return m.style.display==="flex";});
+  if(open){
+    _bodyScrollY=window.scrollY;
+    document.body.style.overflow="hidden";
+    document.body.style.position="fixed";
+    document.body.style.top="-"+_bodyScrollY+"px";
+    document.body.style.width="100%";
+  } else {
+    document.body.style.overflow="";
+    document.body.style.position="";
+    document.body.style.top="";
+    document.body.style.width="";
+    window.scrollTo(0,_bodyScrollY);
+  }
+}function openModal(id){_saveFocus();var _strainOpen=document.getElementById("strain-modal").style.display==="flex";document.querySelectorAll(".modal").forEach(function(e){e.style.display="none"});if(_strainOpen){try{clearStrainUrl();}catch(x){}}var m=document.getElementById(id);if(!m)return;m.style.display="flex";_updateBodyScroll();setTimeout(()=>_trapFocus(m),60);}function closeModal(e){document.getElementById(e).style.display="none";if(e==="strain-modal"){try{clearStrainUrl();}catch(x){}}_restoreFocus();_updateBodyScroll();}function closeAllModals(){var _strainOpen=document.getElementById("strain-modal").style.display==="flex";document.querySelectorAll(".modal").forEach(function(e){e.style.display="none"});if(_strainOpen){try{clearStrainUrl();}catch(x){}}_restoreFocus();_updateBodyScroll();}
 var _prevFocus=null;
 var _tripReturnTarget=null;
 function _saveFocus(){_prevFocus=document.activeElement}
@@ -1764,13 +1843,6 @@ function _trapFocus(modal){var sel='a[href],button:not([disabled]),input:not([di
 !function(){if(location.protocol==="about:")return;var t=window.location.hash,e=new URLSearchParams(window.location.search).get("faq"),n=e?"faq-"+e:t.startsWith("#faq-")?t.slice(1):null;if(n){var a=document.getElementById(n);if(a){var i=document.querySelector(".seo-section");i&&i.setAttribute("open",""),a.setAttribute("open",""),setTimeout(function(){a.scrollIntoView({behavior:"smooth",block:"start"})},180)}}}(),function(){document.querySelectorAll('.seo-section details[id^="faq-"]').forEach(function(d){d.addEventListener('toggle',function(){if(location.protocol==="about:")return;var u=new URL(window.location.href);if(d.open){u.searchParams.set('faq',d.id.replace('faq-',''));}else{var any=document.querySelectorAll('.seo-section details[id^="faq-"][open]').length;if(!any)u.searchParams.delete('faq');}history.replaceState(null,'',u.toString());});})}(),function(){var t=window.location.hash,e=new URLSearchParams(window.location.search).get("strain")||(t.startsWith("#strain-")?t.slice(8):null);if(e){for(var n=r(e),a=null,_pm=null,i=0;i<STRAINS.length;i++){var _sn=r(STRAINS[i].name);if(_sn===n){a=STRAINS[i];break}if(!_pm&&(_sn.startsWith(n)||n.startsWith(_sn)))_pm=STRAINS[i]}if(!a)a=_pm;a?(STATE.strain=a,STATE.interacted=true,updateStrainDisplay(),update(),strainInfoSource="icon",pendingStrain=null,strainNavList=STRAINS,strainNavIdx=STRAINS.findIndex(function(t){return t.name===a.name}),strainNavIdx<0&&(strainNavIdx=0),!new URLSearchParams(window.location.search).get("level")&&setTimeout(function(){renderStrainInfo(a),_updateNavBtns(),_updateStrainModalButtons(),openModal("strain-modal")},120)):setTimeout(function(){var t=document.getElementById("result");var _re=document.getElementById("result-empty");if(t&&_re){t.style.display="";document.getElementById("result-content").style.display="none";_re.style.display="";_re.textContent="Strain “"+e+"” not found — please search above.";}},200)}function r(t){return t.toLowerCase().replace(/-/g," ").replace(/\s*[\(\[][^\)\]]*[\)\]]/g,"").replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim()}}();
 </script>
 
-  <script>
-  // Only load analytics when actually served over HTTP/S — skip on file:// to prevent tab spinner
-  if(location.protocol !== 'file:'){
-    var _pl = document.createElement('link'); _pl.rel='preconnect'; _pl.href='https://gc.zgo.at'; document.head.appendChild(_pl);
-    var _gs = document.createElement('script'); _gs.dataset.goatcounter='https://headpot.goatcounter.com/count'; _gs.async=true; _gs.src='https://gc.zgo.at/count.js'; document.head.appendChild(_gs);
-  }
-  </script>
 
   <script>
 !function(){var T;function p(){document.querySelectorAll(".wlily").forEach(function(e){e.remove()});var e=document.querySelector(".container");if(!e||!e.offsetWidth)return;var t=e.offsetWidth,n=e.offsetHeight,o=window.innerWidth<500,r=o?.5:.7,i=o?.8:1.1,d=[],c=0;while(c<1+Math.floor(3*Math.random())&&c<5){var s=r+Math.random()*(i-r),f=120*s,u=Math.random()<.5?"L":"R",v=Math.floor(Math.random()*360),g=(.18+.17*Math.random()).toFixed(2),q=Math.max(.5*f,40),y=Math.max(n-2*q,10),w,ok=false,tries=0;while(tries<40){w=q+Math.random()*y;ok=d.every(function(e){return e.side!==u||Math.abs(e.yOff-w)>=1.1*f});if(ok)break;tries++}if(ok)d.push({sz:f,side:u,rot:v,op:g,yOff:w});c++}var idx=[0,1,2,3,4];for(var j=4;j>0;j--){var k=Math.floor(Math.random()*(j+1)),tmp=idx[j];idx[j]=idx[k];idx[k]=tmp}d.forEach(function(r,i){var tpl=document.getElementById("wlt"+idx[i%5]);if(!tpl)return;var hang=r.sz*(o?.35:.5),left="L"===r.side?-hang:t-r.sz+hang,top=r.yOff-.5*r.sz,el=document.createElement("div");el.className="wlily";el.style.cssText="position:absolute;left:"+left+"px;top:"+top+"px;width:"+r.sz+"px;height:"+r.sz+"px;transform:rotate("+r.rot+"deg);pointer-events:none;z-index:-2;transform-origin:center center;opacity:"+r.op+";";el.innerHTML=tpl.innerHTML;var sv=el.querySelector("svg");sv&&(sv.style.width="100%",sv.style.height="100%");var fl=el.querySelector("[id^=\"lf\"]");if(fl){fl.style.filter="hue-rotate("+Math.floor(Math.random()*360)+"deg) saturate(2.5) brightness(1.1)"}e.appendChild(el)})}document.addEventListener("DOMContentLoaded",p);var _wlilyRh=function(){clearTimeout(T);T=setTimeout(p,240)};window._wlilyResize&&window.removeEventListener("resize",window._wlilyResize);window._wlilyResize=_wlilyRh;window.addEventListener("resize",_wlilyRh);}();
