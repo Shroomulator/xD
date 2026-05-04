@@ -158,7 +158,7 @@ input[type="number"]{-moz-appearance:textfield}
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.82);justify-content:center;align-items:center;z-index:1000;overscroll-behavior:contain;touch-action:none}
 .modal-content{background:#111115;padding:0;border-radius:18px;width:auto;min-width:min(300px,88vw);max-width:min(520px,92vw);text-align:center;color:var(--text-1);box-sizing:border-box;overflow:hidden;box-shadow:0 0 0 1.5px rgba(255,255,255,0.13),0 24px 64px rgba(0,0,0,0.9),0 4px 16px rgba(0,0,0,0.6);animation:modalIn 200ms var(--ease) both}
 #trip-info-modal .modal-content{overflow-y:auto;max-height:72vh;max-height:72dvh}
-#timeline-modal .modal-content{overflow-y:auto;max-height:72vh;max-height:72dvh}
+#timeline-modal .modal-content{overflow-y:auto;max-height:68vh;max-height:68dvh}
 .modal-header{width:100%;padding:8px 10px 0;text-align:center;box-sizing:border-box}
 .modal-header-badge{display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:10px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;box-sizing:border-box;box-shadow:0 1px 0 rgba(255,255,255,0.06) inset,0 2px 8px rgba(0,0,0,0.4)}
 .modal-title,.trip-modal-title{color:#f0eaff;font-size:0.95rem;font-weight:700;letter-spacing:0.06em;margin:0;text-align:center;text-decoration:none;text-shadow:0 0 20px rgba(195,154,216,0.3)}
@@ -439,8 +439,8 @@ body{padding-bottom:36px}
 .eq-footnote{color:var(--text-m);font-size:0.75rem;text-align:center;margin:12px 0 0;line-height:1.5}
 
 /* ── Timeline modal ───────────────────────────────── */
-.tl-phases{display:flex;flex-direction:column;gap:6px}
-.tl-phase{display:grid;grid-template-columns:22px auto;grid-template-rows:auto auto;align-items:center;column-gap:10px;row-gap:4px;padding:9px 12px;border-radius:9px;border:1px solid var(--border);background:rgba(255,255,255,0.02)}
+.tl-phases{display:flex;flex-direction:column;gap:4px}
+.tl-phase{display:grid;grid-template-columns:20px auto;grid-template-rows:auto auto;align-items:center;column-gap:8px;row-gap:2px;padding:6px 10px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.02)}
 .tl-phase--peak{background:rgba(155,89,182,0.08);border-color:rgba(155,89,182,0.25)}
 .tl-phase--afterglow{background:rgba(100,180,255,0.04);border-color:rgba(100,180,255,0.12)}
 .tl-icon{font-size:1rem;text-align:center;grid-row:1;grid-column:1}
@@ -449,8 +449,8 @@ body{padding-bottom:36px}
 .tl-phase--peak .tl-name{color:#e0b8ff}
 .tl-phase--afterglow .tl-name{color:#8ec8f0}
 .tl-dur{font-size:0.8rem;font-weight:700;color:var(--text-1);white-space:nowrap}
-.tl-note{font-size:0.72rem;color:#9d99b4;line-height:1.5;grid-row:2;grid-column:2}
-.tl-footnote{font-size:0.72rem;color:var(--text-m);text-align:center;margin:12px 0 0;line-height:1.5}
+.tl-note{font-size:0.71rem;color:#9d99b4;line-height:1.35;grid-row:2;grid-column:2}
+.tl-footnote{font-size:0.7rem;color:var(--text-m);text-align:center;margin:8px 0 0;line-height:1.4}
 
 /* ── Background / cosmos ──────────────────────────── */
 #cosmos{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;filter:blur(1.2px);opacity:0.5}
@@ -800,22 +800,86 @@ body[style*="overflow: hidden"]>footer{visibility:hidden}
     <div class="seo-body">
       <details class="formula-section">
         <summary><span>⚗</span><span>Formula Used</span></summary>
-        <div class="formula-section-body"><div class="formula-eq" style="margin-top:0;text-align:center">dose = trip_level / potency</div>
-        <div class="formula-plain" style="text-align:center;margin-top:8px;color:#c0c0c0">Dose ranges derived from established harm-reduction dosing tables and cross-referenced with community data and published assay work.</div>
-        <details style="margin-top:10px">
-          <summary style="cursor:pointer;color:rgba(255,255,255,0.65);font-size:0.82em;font-weight:600;letter-spacing:0.04em;list-style:none;text-align:center;padding:6px 0;user-select:none">&#9660; Formula details &#9660;</summary>
-          <div class="formula-plain" style="text-align:left;margin-top:10px;color:#c8c8c8;font-style:normal">
-            <strong style="color:#c39ad8">Limitations:</strong> Psilocybin's effects are shaped by factors no formula can access — your gut chemistry, receptor sensitivity, tolerance history, what you ate, your headspace going in, the specific batch you have. The dose ranges here are built from the best available data: harm-reduction tables, community reporting, and published assay work. But psilocybin pharmacology is not a solved problem. The research is thin, the variables are many, and individual response is genuinely unpredictable. These numbers are a reasoned starting point. Treat them as a compass, not coordinates.<br><br>
-            <strong style="color:#c39ad8">Base ranges</strong> are fixed per trip level, calibrated to average cubensis potency (1.0×): Low 0.30–0.50g → Medium 0.60–1.00g → Normal 1.3–1.8g → High 2.5–3.5g → Heroic 4.0–6.0g. Microdose is a separate flat 0.1g ÷ potency with no weight scaling.<br><br>
-            <strong style="color:#c39ad8">Potency</strong> is a multiplier relative to average P. cubensis (1.0×). Data sources vary: peer-reviewed HPLC/HPTLC studies (most reliable), competition assays (useful but not independent replication), and community consensus for newer strains (least reliable). The evidence tier on each strain badge reflects this hierarchy.<br><br>
-            <strong style="color:#c39ad8">Weight</strong> adjusts where your dose lands within the range — lighter users land closer to the low end, heavier users toward the high end. The effect is deliberately modest: a 50 kg person gets the range minimum, a 100 kg person gets the maximum. Weight doesn't change the range itself. Research suggests individual receptor sensitivity varies more than body mass.
+        <div class="formula-section-body">
+          <div class="formula-eq" style="margin-top:0;text-align:center;font-size:0.95rem;letter-spacing:0.02em">
+            Final dose = Trip Level × Weight Adjustment × Strain Potency <span style="opacity:0.6">± Modifiers</span>
+          </div>
+          <div class="formula-plain" style="text-align:center;margin-top:8px;color:#aaa;font-size:0.8rem">Dose ranges calibrated to average <em>P. cubensis</em> (1.0×), cross-referenced with published assay data and harm-reduction tables.</div>
+        <details class="formula-section" style="margin-top:10px;border-color:rgba(255,255,255,0.07)">
+          <summary style="background:rgba(255,255,255,0.03)"><span>🔧</span><span>Formula Details</span></summary>
+          <div class="formula-section-body" style="padding:14px 16px 16px">
+
+            <p style="color:#9d99b4;font-size:0.78rem;margin:0 0 16px;line-height:1.6">This model does not aim for exact prediction. It anchors subjective intensity across different conditions using normalized references and controlled adjustments. Individual response, batch variance, and gut chemistry are not captured — treat the output as a calibrated starting point.</p>
+
+            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">
+
+              <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 12px">
+                <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--purple-l);margin-bottom:6px">Trip Level → Base Range</div>
+                <div style="font-size:0.78rem;color:#b8b4cc;line-height:1.5;margin-bottom:8px">Each level defines a target intensity band. Weight determines where within it your dose lands.</div>
+                <div style="overflow-x:auto">
+                <table style="width:100%;border-collapse:collapse;font-size:0.72rem">
+                  <thead><tr style="border-bottom:1px solid rgba(255,255,255,0.1)">
+                    <th style="text-align:left;padding:4px 8px 4px 0;color:var(--purple-l);font-weight:600;white-space:nowrap">Level</th>
+                    <th style="text-align:left;padding:4px 8px;color:var(--purple-l);font-weight:600;white-space:nowrap">Range (g dry cubensis)</th>
+                    <th style="text-align:left;padding:4px 0 4px 8px;color:var(--purple-l);font-weight:600">Profile</th>
+                  </tr></thead>
+                  <tbody style="color:#b0acc8">
+                    <tr><td style="padding:3px 8px 3px 0;white-space:nowrap">Microdose</td><td style="padding:3px 8px;white-space:nowrap">~0.05 – 0.15</td><td style="padding:3px 0 3px 8px">Sub-perceptual</td></tr>
+                    <tr><td style="padding:3px 8px 3px 0">Low</td><td style="padding:3px 8px;white-space:nowrap">0.30 – 0.50</td><td style="padding:3px 0 3px 8px">Light, functional</td></tr>
+                    <tr><td style="padding:3px 8px 3px 0">Medium</td><td style="padding:3px 8px;white-space:nowrap">0.60 – 1.00</td><td style="padding:3px 0 3px 8px">Noticeable, immersive</td></tr>
+                    <tr><td style="padding:3px 8px 3px 0">Normal</td><td style="padding:3px 8px;white-space:nowrap">1.3 – 1.8</td><td style="padding:3px 0 3px 8px">Strong, emotional</td></tr>
+                    <tr><td style="padding:3px 8px 3px 0">High</td><td style="padding:3px 8px;white-space:nowrap">2.5 – 3.5</td><td style="padding:3px 0 3px 8px">Very intense</td></tr>
+                    <tr><td style="padding:3px 8px 3px 0">Heroic</td><td style="padding:3px 8px;white-space:nowrap">4.0 – 6.0+</td><td style="padding:3px 0 3px 8px">Full immersion</td></tr>
+                  </tbody>
+                </table>
+                </div>
+              </div>
+
+              <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 12px">
+                <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--purple-l);margin-bottom:6px">Body Weight → Position</div>
+                <div style="font-size:0.78rem;color:#b8b4cc;line-height:1.5">Weight shifts where your dose lands <em>within</em> the selected range — not the range itself. 50 kg → lower bound. 100 kg → upper bound. Individual receptor sensitivity varies more than body mass, but weight is the best practical variable available.</div>
+              </div>
+
+              <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 12px">
+                <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--purple-l);margin-bottom:6px">Potency Multiplier</div>
+                <div style="font-size:0.78rem;color:#b8b4cc;line-height:1.5;margin-bottom:6px">All doses normalize to <em>P. cubensis</em> baseline (1.0×). The strain multiplier adjusts what you physically weigh out:</div>
+                <code style="display:block;background:rgba(0,0,0,0.3);border-radius:5px;padding:7px 10px;font-size:0.75rem;color:#c39ad8;letter-spacing:0.02em">Adjusted Dose = Base Dose ÷ Potency Multiplier</code>
+                <div style="font-size:0.73rem;color:#9d99b4;margin-top:6px">2.0× potency → 50% of base dose &nbsp;·&nbsp; 0.7× potency → 143% of base dose<br><span style="color:#ffcc66">⚠ Real-world batch variance is ±20–40%.</span></div>
+              </div>
+
+              <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 12px">
+                <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--purple-l);margin-bottom:6px">Modifiers</div>
+                <div style="font-size:0.78rem;color:#b8b4cc;line-height:1.55">
+                  <strong style="color:#ddd">Lemon tek</strong> — partial pre-conversion to psilocin before ingestion. Faster onset, higher peak, shorter duration. Calculator applies ~12% effective intensity increase.<br>
+                  <strong style="color:#ddd">Fresh mushrooms</strong> — converted via ~90% water weight assumption. Higher inherent variability due to uneven hydration across the batch.
+                </div>
+              </div>
+
+              <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 12px">
+                <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--purple-l);margin-bottom:6px">Output Range</div>
+                <div style="font-size:0.78rem;color:#b8b4cc;line-height:1.5;margin-bottom:4px">Final result displayed as <strong style="color:#ddd">Dose ± 15–30%</strong>. Sources of variance: individual metabolism · gastric state · tolerance · alkaloid distribution within the mushroom material.</div>
+                <div style="font-size:0.73rem;color:#9d99b4">The upper bound is a realistic outcome — not a worst case. Plan accordingly.</div>
+              </div>
+
+            </div>
+
+            <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:10px;font-size:0.75rem;color:#9d99b4;line-height:1.6">
+              Psilocybin pharmacology is not a solved problem. These numbers are a reasoned starting point. <em style="color:#b8b4cc">Treat them as a compass, not coordinates.</em>
+            </div>
+
           </div>
         </details>
       </div>
       </details>
               <details class="formula-section" style="margin-top:8px">
-          <summary><span>📱</span><span>Works Offline</span></summary>
-          <div class="formula-section-body faq-answer" style="padding:10px 14px 12px;font-size:0.9375rem;line-height:1.7">Once loaded, this page runs fully offline — all strain data and the FAQ are embedded in the file.<br><br><strong>Mobile (iOS/Android):</strong> Open in browser → tap Share → "Add to Home Screen". Works like a native app.<br><strong>Desktop:</strong> Works from your browser cache after first load. For a permanent file: File → Save Page As.</div>
+          <summary><span>📱</span><span>Install App</span></summary>
+          <div class="formula-section-body faq-answer" style="padding:12px 14px 14px">
+            <p style="font-size:0.82rem;color:#9d99b4;margin:0 0 12px;line-height:1.55">Everything runs offline after your first visit — no internet needed. Install to your home screen for the full app experience.</p>
+            <button id="pwa-install-btn" onclick="_pwaInstall()" style="display:inline-flex;align-items:center;gap:8px;background:rgba(155,89,182,0.15);border:1px solid rgba(155,89,182,0.4);color:#e0b8ff;padding:8px 16px;border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;letter-spacing:0.03em;-webkit-tap-highlight-color:transparent">
+              ⬇ Add to Home Screen
+            </button>
+            <div id="pwa-hint" style="display:none;margin-top:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:8px;padding:10px 12px;font-size:0.8rem;color:#b8b4cc;line-height:1.6"></div>
+          </div>
         </details>
 
 <h3 style="font-size:1.25rem;font-weight:600;color:#c39ad8;text-align:center;letter-spacing:0.06em;margin:24px 0 12px">F.A.Q.</h3>
@@ -1125,7 +1189,7 @@ People microdose for different reasons — focus and creative work, mood stabili
   <div id="timeline-modal" class="modal" role="dialog" aria-modal="true" aria-label="Trip timeline">
     <div class="modal-content">
       <div class="modal-header"><div class="modal-header-badge"><span class="modal-title-icon">⏱</span><h2 class="modal-title">Trip Timeline</h2></div></div>
-      <div class="modal-body" style="padding:16px 16px 8px">
+      <div class="modal-body" style="padding:8px 14px 6px">
 
         <div class="tl-phases">
           <div class="tl-phase">
@@ -1856,6 +1920,38 @@ function _trapFocus(modal){var sel='a[href],button:not([disabled]),input:not([di
 </footer>
 
   <script>
+  // PWA install prompt
+  var _pwaPrompt=null;
+  window.addEventListener("beforeinstallprompt",function(e){
+    e.preventDefault();_pwaPrompt=e;
+  });
+  window.addEventListener("appinstalled",function(){
+    var btn=document.getElementById("pwa-install-btn");
+    var hint=document.getElementById("pwa-hint");
+    if(btn){btn.innerHTML="✓ Installed!";btn.disabled=true;btn.style.opacity="0.6";}
+    if(hint)hint.style.display="none";
+  });
+  function _pwaInstall(){
+    var hint=document.getElementById("pwa-hint");
+    var ua=navigator.userAgent;
+    var isIOS=/iphone|ipad|ipod/i.test(ua);
+    var isAndroid=/android/i.test(ua);
+    if(_pwaPrompt){
+      _pwaPrompt.prompt();
+      _pwaPrompt.userChoice.then(function(){_pwaPrompt=null;});
+      return;
+    }
+    if(!hint)return;
+    if(isIOS){
+      hint.innerHTML='<strong style="color:#e0b8ff">📱 iPhone / iPad:</strong><br>1. Tap the <strong>Share 🔗</strong> button in Safari<br>2. Tap <strong>"Add to Home Screen"</strong>';
+    } else if(isAndroid){
+      hint.innerHTML='<strong style="color:#e0b8ff">📱 Android:</strong><br>Tap the <strong>⋮ menu</strong> in your browser, then <strong>"Add to Home Screen"</strong> or <strong>"Install App"</strong>';
+    } else {
+      hint.innerHTML='<strong style="color:#e0b8ff">💻 Desktop:</strong><br>Press <strong>Ctrl+S</strong> (Windows) or <strong>Cmd+S</strong> (Mac) to save the page as a file you can open anytime, even offline.';
+    }
+    hint.style.display=hint.style.display==="block"?"none":"block";
+  }
+
   if('serviceWorker' in navigator && location.protocol !== 'about:' && location.protocol !== 'file:'){
     window.addEventListener('load', function(){
       navigator.serviceWorker.register('/xD/sw.js', {scope: '/xD/'})
