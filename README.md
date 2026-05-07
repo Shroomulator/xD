@@ -70,7 +70,7 @@ Shroomulator is intended to improve clarity around dosage estimation and reduce 
 
 ---
 
-📬 Contact
+## 📬 Contact
 
 Found an issue, have feedback, or want to contribute better data sources or strain information?
 
