@@ -69,3 +69,10 @@ MIT License — see the [LICENSE](https://github.com/Shroomulator/xD/blob/main/L
 Shroomulator is intended to improve clarity around dosage estimation and reduce common risks associated with uncertainty or misjudgment. It does not encourage use, but aims to provide better-informed reference points where needed.
 
 ---
+
+📬 Contact
+
+Found an issue, have feedback, or want to contribute better data sources or strain information?
+
+Feel free to reach out:
+Shroomulator@proton.me
